@@ -1,0 +1,3106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Java</title>
+    <style>
+      :root {
+      --main-bg-color: #2c3e50;
+      --sidebar-bg-color: #002060;
+      --header-bg-color: #ee9a00;
+      --footer-bg-color: #ee9a00;
+      --footer-text-color: white;
+      --text-color: white;
+      --hover-color: #f39c12;
+      --quote-border-color: #1abc9c;
+      }
+      body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      }
+      .header {
+      background: var(--header-bg-color);
+      color: var(--text-color);
+      text-align: center;
+      padding: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      }
+      .main-container {
+      display: flex;
+      flex-direction: row;
+      flex-grow: 1;
+      }
+      .sidebar {
+      width: 250px;
+      background: var(--sidebar-bg-color);
+      color: var(--text-color);
+      padding: 20px;
+      height: 100vh;
+      overflow-y: auto;
+      flex-shrink: 0;
+      }
+      .sidebar h2 {
+      text-align: center;
+      }
+      .menu-item {
+      padding: 10px;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .menu-item:hover {
+      background: var(--hover-color);
+      }
+      .sub-menu {
+      display: none;
+      padding-left: 20px;
+      }
+      .sub-menu div {
+      padding: 8px;
+      cursor: pointer;
+      }
+      .sub-menu div:hover {
+      background: var(--hover-color);
+      }
+      .content {
+      padding: 20px;
+      flex-grow: 1;
+      text-align: justify;
+      margin-left: 0;
+      }
+      .content img {
+      max-width: 100%;
+      height: auto;
+      }
+      .content h1 {
+      color: blue;
+      }
+      .orange-accent {
+      color: #E67E22; 
+      font-weight: bold; 
+      }
+	  .purple-text {
+      color: #ff33d1;
+	  }
+      .blue-bolt {
+      color: #00B9FA; 
+      font-weight: bold;
+      }
+      .quote {
+      font-style: italic;
+      color: #ee9a00;
+      border-left: 4px solid var(--quote-border-color);
+      padding-left: 15px;
+      margin: 15px auto;
+      font-size: 30px;
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 60%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      }
+      .quote-source {
+      font-size: 14px;
+      color: gray;
+      display: block;
+      margin-top: 5px;
+      text-align: right;
+      width: 100%;
+      }
+      .footer {
+      text-align: center;
+      padding: 10px;
+      background: var(--footer-bg-color);
+      color: var(--footer-text-color);
+      margin-top: auto;
+      }
+      .pre, code {
+      background: #c0c8c8; 
+      color: #fff; 
+      font-family: 'Courier New', monospace; 
+      font-size: 18px; 
+      line-height: 1.8; 
+      padding: 12px; 
+      border-radius: 6px; 
+      overflow-x: auto; 
+      white-space: pre-wrap; 
+      word-wrap: break-word; 
+      }
+      .code-inline {
+      font-size: 14px; 
+      background:  #000; 
+      padding: 3px 6px; 
+      border-radius: 4px; 
+      font-family: 'Courier New', monospace; 
+      white-space: nowrap; 
+      }
+      .table {
+      width: 100%;
+      border-collapse: collapse;
+      }
+      .th, td {
+      padding: 12px 20px; 
+      text-align: left; 
+      border-bottom: 1px solid #ddd; 
+      }
+      .list-item {
+      display: flex;
+      align-items: center;
+      }
+      .list-label {
+      display: inline-block; 
+      min-width: 180px; 
+      font-weight: bold;
+      }
+      .list-description {
+      flex: 1; 
+      }
+      .python-terminal {
+      background: #000; 
+      color: #fff;  
+      font-family: 'Courier New', monospace; 
+      font-size: 18px;  
+      line-height: 1.8;
+      padding: 12px;  
+      border-radius: 6px;
+      overflow-x: auto; 
+      display: block;
+      max-width: fit-content;
+      white-space: pre-wrap; 
+      word-wrap: break-word;
+      text-align: left;
+      margin-left: 0.5 !important;
+      padding-left: 0.5 !important;
+      }
+    </style>
+</head>
+<body onload="showContent('welcome')">
+    <div class="header">Course Content - Basic Java</div>
+    
+    <div class="main-container">
+        <div class="sidebar">
+            <h2 class="orange-accent">Course Content</h2>
+            <div class="menu-item" onclick="showContent('welcome')">Welcome</div>
+
+            <div class="menu-item" onclick="toggleSubMenu('Installation')">Installation & Configuration</div>
+            <div id="Installation" class="sub-menu">
+                <div onclick="showContent('install_jdk')">Downloading & Installing Java (JDK)</div>
+                <div onclick="showContent('env_variables')">Setting Up Environment Variables</div>
+                <div onclick="showContent('ide_setup')">Installing and Configuring an IDE</div>
+                <div onclick="showContent('first_program')">Running Your First Java Program</div>
+                <div onclick="showContent('dev_tools')">Installing Java Development Tools</div>
+                <div onclick="showContent('troubleshooting')">Troubleshooting Common Issues</div>
+            </div>
+
+            <div class="menu-item" onclick="toggleSubMenu('getting_started')">Getting Started with Java</div>
+            <div id="getting_started" class="sub-menu">
+                <div onclick="showContent('intro_java')">Introduction to Java</div>
+                <div onclick="showContent('understand_env')">Understanding Java Development Environment</div>
+            </div>
+
+
+            <div class="menu-item" onclick="toggleSubMenu('basic-java')">Basic with Java</div>
+            <div id="basic-java" class="sub-menu">
+                <div onclick="showContent('basic_syntax')">Data Type, Syntax, Output, Variables, String, Operator, Math</div>
+                <div onclick="showContent('condition_looping')">Condition & Looping</div>
+                <div onclick="showContent('break_continue_array')">Breaks, Continue & Array</div>
+            </div>
+
+            <div class="menu-item" onclick="toggleSubMenu('intermediate-java')">Intermediate with Java</div>
+            <div id="intermediate-java" class="sub-menu">
+                <div onclick="showContent('java_methods')">Java Methods - All You Need to Know</div>
+                <div onclick="showContent('java_classes')">Java Classes - All You Need to Know</div>
+                <div onclick="showContent('java_data_structures')">Java Data Structures - All You Need to Know</div>
+            </div>
+
+            <div class="menu-item" onclick="toggleSubMenu('advanced-java')">Advanced with Java</div>
+            <div id="advanced-java" class="sub-menu">
+                <div onclick="showContent('java_advanced')">Java - Advanced - All You Need to Know</div>
+                <div onclick="showContent('java_file')">Java - File Handling</div>
+                <div onclick="showContent('java_project')">Java Project</div>
+            </div>
+
+
+            <div class="menu-item" onclick="toggleSubMenu('others-java')">Examples</div>
+            <div id="others-java" class="sub-menu">
+                <div onclick="showContent('ex_1')">Java 1</div>
+                <div onclick="showContent('ex_2')">Java 2</div>
+                <div onclick="showContent('ex_3')">Java 3</div>
+                <div onclick="showContent('ex_4')">Java 4</div>
+                <div onclick="showContent('ex_5')">Java 5</div>
+                <div onclick="showContent('ex_6')">Java 6</div>
+				<div onclick="showContent('ex_7')">Java 7</div>
+                <div onclick="showContent('ex_8')">Java 8</div>
+                <div onclick="showContent('ex_9')">Java 8</div>
+                <div onclick="showContent('ex_10')">Java 10</div>				
+            </div>
+			
+            <div class="menu-item" onclick="toggleSubMenu('java_quiz')">Quiz</div>
+            <div id="java_quiz" class="sub-menu">
+                <div onclick="showContent('quiz')">Quiz : Understand the Basic</div>
+            </div>
+
+			
+        </div>
+        <div class="content" id="content-area">
+            <h1 class="blue-bolt">Welcome to Basic Java</h1>
+            <p>This course is designed to introduce you to Java, a powerful and versatile programming language used in various applications, from web development to mobile and enterprise software.</p>
+        </div>
+    </div>
+    
+    <div class="footer">To Build a Better Life - 2025</div>
+    
+    <script>
+    function toggleSubMenu(id) {
+        var submenu = document.getElementById(id);
+        if (submenu) {
+            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        }
+    }
+
+    function showContent(topic) {
+        var content = {
+            'welcome': `
+                <h1 class="blue-bolt">Welcome to Basic Java</h1>
+                <p>This course is designed to introduce you to Java, a powerful and versatile programming language used in various applications, from web development to mobile and enterprise software.</p>
+            `,
+
+            'install_jdk': `
+                <h1 class="blue-bolt">Downloading & Installing Java (JDK) on Windows</h1>
+                <p>Java Development Kit (JDK) is a software package required for developing Java applications. It includes the Java Runtime Environment (JRE), the Java Compiler (<code class="code-inline">javac</code>), and other necessary tools for writing, compiling, and running Java programs.</p>
+
+                <h2 class="orange-accent">Step 1: Downloading JDK</h2>
+                <ol>
+                    <li><strong>Go to the official Oracle JDK download page:</strong></li>
+                    <p>Open your web browser and visit: <a href="https://www.oracle.com/java/technologies/javase-downloads.html" target="_blank">Oracle JDK Downloads</a></p>
+
+                    <li><strong>Choose the latest version of JDK for Windows.</strong></li>
+                    <p>Locate the <strong>Windows x64 Installer</strong> (<code class="code-inline">.exe</code> file) under the "Windows" section. Click the <strong>Download</strong> button and accept the Oracle license agreement if prompted.</p>
+
+                    <li><strong>Wait for the download to complete.</strong></li>
+                </ol>
+
+                <h2 class="orange-accent">Step 2: Installing JDK</h2>
+                <ol>
+                    <li><strong>Locate the downloaded JDK installer</strong> (<code class="code-inline">jdk-XX_windows-x64_bin.exe</code>).</li>
+                    <p>Navigate to your <strong>Downloads</strong> folder and double-click the installer file to launch the installation wizard.</p>
+
+                    <li><strong>Follow the installation wizard steps:</strong></li>
+                    <ul>
+                        <li>Click <strong>Next</strong> on the welcome screen.</li>
+                        <li>Choose the installation directory (default is recommended: <code class="code-inline">C:\\Program Files\\Java\\jdk-XX</code>).</li>
+                        <li>Click <strong>Next</strong> to continue.</li>
+                        <li>The installer will copy necessary files and set up JDK.</li>
+                    </ul>
+
+                    <li><strong>Wait for the installation to complete.</strong></li>
+                    <p>Once finished, click <strong>Close</strong> to exit the installer.</p>
+                </ol>
+
+                <h2 class="orange-accent">Step 3: Setting Up Environment Variables</h2>
+                <p>To use Java from the command line (CMD or PowerShell), you need to configure environment variables.</p>
+
+                <h3 class="purple-text">1. Open System Environment Variables</h3>
+                <ul>
+                    <li>Press <strong>Win + R</strong>, type <code class="code-inline">sysdm.cpl</code>, and hit <strong>Enter</strong>.</li>
+                    <li>In the <strong>System Properties</strong> window, go to the <strong>Advanced</strong> tab.</li>
+                    <li>Click <strong>Environment Variables</strong>.</li>
+                </ul>
+
+                <h3 class="purple-text">2. Add JAVA_HOME Variable</h3>
+                <ul>
+                    <li>Under <strong>System Variables</strong>, click <strong>New</strong>.</li>
+                    <li>Set <strong>Variable name</strong> as: <code class="code-inline">JAVA_HOME</code></li>
+                    <li>Set <strong>Variable value</strong> as: <code class="code-inline">C:\\Program Files\\Java\\jdk-XX</code> (Replace <code class="code-inline">XX</code> with your JDK version).</li>
+                    <li>Click <strong>OK</strong>.</li>
+                </ul>
+
+                <h3 class="purple-text">3. Update the PATH Variable</h3>
+                <ul>
+                    <li>In <strong>System Variables</strong>, find <strong>Path</strong> and click <strong>Edit</strong>.</li>
+                    <li>Click <strong>New</strong>, then add: <code class="code-inline">%JAVA_HOME%\\bin</code></li>
+                    <li>Click <strong>OK</strong> to save changes.</li>
+                </ul>
+
+                <h2 class="orange-accent">Step 4: Verify JDK Installation</h2>
+                <p>Open <strong>Command Prompt</strong> (<code class="code-inline">Win + R</code>, type <code class="code-inline">cmd</code>, press <strong>Enter</strong>) and enter the following command:</p>
+
+                <pre>java -version</pre>
+
+                <p>You should see an output like this:</p>
+
+                <pre>
+java version "XX.0.1"
+Java(TM) SE Runtime Environment (build XX.0.1+XX)
+Java HotSpot(TM) 64-Bit Server VM (build XX.0.1+XX, mixed mode)
+                </pre>
+
+                <p>Also, check the compiler version by running:</p>
+
+                <pre>javac -version</pre>
+
+                <p>You should see an output similar to:</p>
+
+                <pre>javac XX.0.1</pre>
+
+                <p>This confirms that JDK is installed correctly! ✅</p>
+
+                <h2 class="orange-accent">Next Steps</h2>
+                <ul>
+                    <li>✔ Install an <strong>IDE</strong> (like IntelliJ IDEA, Eclipse, or VS Code) for writing Java programs.</li>
+                    <li>✔ Learn how to <strong>write and run your first Java program</strong>.</li>
+                </ul>
+
+                <blockquote class="quote">
+                    🎉 <strong>Congratulations! You have successfully installed Java (JDK) on Windows! 🚀</strong>
+                </blockquote>
+            `,
+
+            'env_variables': `
+				<h1 class="blue-bolt">Setting Up Environment Variables</h1>
+
+				<p>To use Java from the command line, you need to set up environment variables properly. This ensures that Java commands like <code class="code-inline">javac</code> and <code class="code-inline">java</code> work globally.</p>
+
+				<h2 class="orange-accent">Step 1: Open System Properties</h2>
+				<ol>
+					<li><strong>Press <code class="code-inline">Win + R</code>, type <code class="code-inline">sysdm.cpl</code>, and hit <strong>Enter</strong>.</strong></li>
+					<li>The <strong>System Properties</strong> window will open.</li>
+				</ol>
+
+				<h2 class="orange-accent">Step 2: Open Environment Variables</h2>
+				<ol>
+					<li>In the <strong>System Properties</strong> window, go to the <strong>Advanced</strong> tab.</li>
+					<li>Click on <strong>Environment Variables...</strong>.</li>
+				</ol>
+
+				<h2 class="orange-accent">Step 3: Add the <code class="code-inline">JAVA_HOME</code> System Variable</h2>
+				<p>The <code class="code-inline">JAVA_HOME</code> variable is needed by Java applications and IDEs to locate the JDK.</p>
+
+				<h3 class="purple-text">1. Locate Your JDK Path</h3>
+				<ul>
+					<li>Open **File Explorer** and navigate to: <br>
+						<code class="code-inline">C:\Program Files\Java</code>
+					</li>
+					<li>Find a folder named <strong>jdk-XX.X.X</strong> (e.g., <code class="code-inline">jdk-21</code>).</li>
+					<li>Copy the full path of this folder.</li>
+				</ul>
+
+				<h3 class="purple-text">2. Add a New System Variable</h3>
+				<ol>
+					<li>In the <strong>Environment Variables</strong> window, locate the <strong>System Variables</strong> section.</li>
+					<li>Click <strong>New...</strong> to create a new variable.</li>
+					<li>Enter the following details:</li>
+					<ul>
+						<li><strong>Variable name:</strong> <code class="code-inline">JAVA_HOME</code></li>
+						<li><strong>Variable value:</strong> <code class="code-inline">C:\Program Files\Java\jdk-XX</code></li>
+					</ul>
+					<li>Click <strong>OK</strong> to save.</li>
+				</ol>
+
+				<h2 class="orange-accent">Step 4: Update the <code class="code-inline">Path</code> Variable</h2>
+				<p>The <code class="code-inline">Path</code> variable allows Windows to recognize Java commands globally.</p>
+
+				<h3 class="purple-text">1. Edit the Path Variable</h3>
+				<ol>
+					<li>Scroll down in the **System Variables** section.</li>
+					<li>Find the variable named **Path**, then click **Edit...**.</li>
+					<li>In the **Edit Environment Variable** window, click **New** and add:</li>
+					<ul>
+						<li><code class="code-inline">%JAVA_HOME%\bin</code></li>
+					</ul>
+					<li>Click **OK** to save.</li>
+				</ol>
+
+				<h2 class="orange-accent">Step 5: Verify the Configuration</h2>
+				<p>To ensure Java is set up correctly, follow these steps:</p>
+
+				<h3 class="purple-text">1. Open Command Prompt (CMD)</h3>
+				<ul>
+					<li>Press <code class="code-inline">Win + R</code>, type <code class="code-inline">cmd</code>, and press <strong>Enter</strong>.</li>
+				</ul>
+
+				<h3 class="purple-text">2. Check Java Version</h3>
+				<pre>java -version</pre>
+				<p>✅ Expected output:</p>
+				<pre>
+				java version "XX.0.1"
+				Java(TM) SE Runtime Environment (build XX.0.1+XX)
+				Java HotSpot(TM) 64-Bit Server VM (build XX.0.1+XX, mixed mode)
+				</pre>
+
+				<h3 class="purple-text">3. Check Java Compiler Version</h3>
+				<pre>javac -version</pre>
+				<p>✅ Expected output:</p>
+				<pre>javac XX.0.1</pre>
+
+				<h2 class="orange-accent">Step 6: Fixing Common Issues</h2>
+				<p>If Java is not recognized, check the following:</p>
+
+				<h3 class="purple-text">1. Reopen CMD</h3>
+				<ul>
+					<li>If <code class="code-inline">java -version</code> or <code class="code-inline">javac -version</code> fails, restart the terminal or your PC.</li>
+				</ul>
+
+				<h3 class="purple-text">2. Check if <code class="code-inline">JAVA_HOME</code> is Set Correctly</h3>
+				<ul>
+					<li>Run the command: <code class="code-inline">echo %JAVA_HOME%</code></li>
+					<li>If it returns a blank output, the variable is not set correctly.</li>
+				</ul>
+
+				<h3 class="purple-text">3. Ensure <code class="code-inline">Path</code> Includes <code class="code-inline">%JAVA_HOME%\bin</code></h3>
+				<ul>
+					<li>Run: <code class="code-inline">echo %Path%</code></li>
+					<li>Look for the Java path in the output.</li>
+				</ul>
+
+				<h3 class="purple-text">4. Run CMD as Administrator</h3>
+				<ul>
+					<li>Some system variables require administrator privileges to take effect.</li>
+				</ul>
+
+				<h2 class="orange-accent">Step 7: Using Java Globally</h2>
+				<p>Once everything is set, you can now compile and run Java programs from anywhere:</p>
+
+				<h3 class="purple-text">Compile a Java Program</h3>
+				<pre>javac MyProgram.java</pre>
+
+				<h3 class="purple-text">Run a Java Program</h3>
+				<pre>java MyProgram</pre>
+
+				<blockquote class="quote">
+					🎉 <strong>Congratulations! You have successfully configured Java environment variables! 🚀</strong>
+				</blockquote>
+
+            `,
+
+            'ide_setup': `
+				<h1 class="blue-bolt">Installing and Configuring an IDE for Java</h1>
+
+				<p>After installing Java and setting up environment variables, the next step is to install an Integrated Development Environment (IDE) to write, compile, and run Java programs efficiently.</p>
+
+				<p>There are several popular IDEs for Java development:</p>
+				<ul>
+					<li><strong>IntelliJ IDEA</strong> (Recommended for beginners and professionals)</li>
+					<li><strong>Eclipse IDE</strong> (Lightweight and widely used)</li>
+					<li><strong>Visual Studio Code (VS Code)</strong> (Lightweight with Java extensions)</li>
+					<li><strong>NetBeans</strong> (Good for educational purposes)</li>
+				</ul>
+
+				<h2 class="orange-accent">Step 1: Choosing the Right IDE</h2>
+				<p>If you are new to Java, we recommend <strong>IntelliJ IDEA Community Edition</strong> because of its simple interface and powerful features. However, if you prefer another IDE, the steps for setting it up are similar.</p>
+
+				<h2 class="orange-accent">Step 2: Downloading and Installing IntelliJ IDEA</h2>
+
+				<h3 class="purple-text">1. Download IntelliJ IDEA</h3>
+				<ol>
+					<li>Go to the official JetBrains website: <a href="https://www.jetbrains.com/idea/download/" target="_blank">IntelliJ IDEA Download Page</a></li>
+					<li>Under the "Community" section (free version), click <strong>Download</strong>.</li>
+				</ol>
+
+				<h3 class="purple-text">2. Install IntelliJ IDEA</h3>
+				<ol>
+					<li>Locate the downloaded installer file (e.g., <code class="code-inline">ideaIC-XX.X.exe</code>).</li>
+					<li>Double-click the file to launch the installation wizard.</li>
+					<li>Follow the prompts:
+						<ul>
+							<li>Click **Next** to continue.</li>
+							<li>Choose the **installation directory** (default is recommended: <code class="code-inline">C:\Program Files\JetBrains\IntelliJ IDEA Community Edition</code>).</li>
+							<li>Click **Next**.</li>
+							<li>In the "Installation Options" screen, check:
+								<ul>
+									<li><code class="code-inline">Add bin folder to PATH</code> (optional but recommended)</li>
+									<li><code class="code-inline">Create Desktop Shortcut</code> (optional)</li>
+								</ul>
+							</li>
+							<li>Click **Install** and wait for the process to finish.</li>
+						</ul>
+					</li>
+					<li>Click **Finish** when installation is complete.</li>
+				</ol>
+
+				<h2 class="orange-accent">Step 3: Configuring IntelliJ IDEA</h2>
+
+				<h3 class="purple-text">1. Launch IntelliJ IDEA</h3>
+				<ul>
+					<li>Double-click the **IntelliJ IDEA** icon from the desktop or search for "IntelliJ IDEA" in the Windows Start menu.</li>
+					<li>When IntelliJ IDEA launches for the first time, select **Do not import settings** if prompted.</li>
+				</ul>
+
+				<h3 class="purple-text">2. Install Java SDK in IntelliJ</h3>
+				<ol>
+					<li>Click on **New Project**.</li>
+					<li>Under **Project SDK**, click **Add JDK**.</li>
+					<li>Navigate to your JDK installation folder (e.g., <code class="code-inline">C:\Program Files\Java\jdk-XX</code>).</li>
+					<li>Select the folder and click **OK**.</li>
+					<li>Ensure that the **Java version** is correctly detected.</li>
+				</ol>
+
+				<h3 class="purple-text">3. Create a New Java Project</h3>
+				<ol>
+					<li>Click **New Project**.</li>
+					<li>Select **Java** on the left panel.</li>
+					<li>Choose the **Project SDK** (this should be the JDK you just added).</li>
+					<li>Click **Next**, then **Finish**.</li>
+				</ol>
+
+				<h2 class="orange-accent">Step 4: Writing and Running Your First Java Program</h2>
+
+				<h3 class="purple-text">1. Create a Java Class</h3>
+				<ol>
+					<li>In IntelliJ, right-click on the **src** folder in the **Project Explorer**.</li>
+					<li>Click **New** > **Java Class**.</li>
+					<li>Name the class <code class="code-inline">HelloWorld</code>.</li>
+					<li>Click **OK**.</li>
+				</ol>
+
+				<h3 class="purple-text">2. Write Java Code</h3>
+				<p>Replace the default template with the following Java code:</p>
+				<pre>
+				public class HelloWorld {
+					public static void main(String[] args) {
+						System.out.println("Hello, Java!");
+					}
+				}
+				</pre>
+
+				<h3 class="purple-text">3. Run the Java Program</h3>
+				<ol>
+					<li>Click the green **Run** button at the top or press <code class="code-inline">Shift + F10</code>.</li>
+					<li>You should see the output in the **Run** window:</li>
+				</ol>
+				<pre>
+				Hello, Java!
+				</pre>
+
+				<h2 class="orange-accent">Step 5: Configuring IntelliJ IDEA for Better Performance</h2>
+
+				<h3 class="purple-text">1. Enable Auto-Save</h3>
+				<ul>
+					<li>Go to **File** > **Settings**.</li>
+					<li>Under **Appearance & Behavior**, click **System Settings**.</li>
+					<li>Check the box **Save files automatically if the application is idle for X seconds**.</li>
+				</ul>
+
+				<h3 class="purple-text">2. Enable Dark Mode (Optional)</h3>
+				<ul>
+					<li>Go to **File** > **Settings**.</li>
+					<li>Under **Appearance & Behavior**, select **Appearance**.</li>
+					<li>Choose **Darcula** (Dark Mode) or **IntelliJ Light**.</li>
+				</ul>
+
+				<h3 class="purple-text">3. Install Useful Plugins</h3>
+				<ul>
+					<li>Go to **File** > **Settings** > **Plugins**.</li>
+					<li>Search for and install:
+						<ul>
+							<li><strong>Key Promoter X</strong> (learn IntelliJ shortcuts faster)</li>
+							<li><strong>CheckStyle</strong> (code quality checking)</li>
+						</ul>
+					</li>
+				</ul>
+
+				<h2 class="orange-accent">Step 6: Troubleshooting Common Issues</h2>
+
+				<h3 class="purple-text">1. Java SDK Not Found</h3>
+				<ul>
+					<li>Go to **File** > **Project Structure** > **Project**.</li>
+					<li>Ensure the correct **Project SDK** is selected.</li>
+				</ul>
+
+				<h3 class="purple-text">2. IntelliJ Runs Too Slow</h3>
+				<ul>
+					<li>Increase the memory allocation:
+						<ul>
+							<li>Go to **Help** > **Edit Custom VM Options**.</li>
+							<li>Add the following lines:
+								<pre>-Xms512m
+				-Xmx2048m</pre>
+							</li>
+						</ul>
+					</li>
+				</ul>
+
+				<h3 class="purple-text">3. Java Program Not Running</h3>
+				<ul>
+					<li>Ensure your Java file is inside the **src** folder.</li>
+					<li>Make sure the **main method** is correctly defined.</li>
+				</ul>
+
+				<blockquote class="quote">
+					🎉 <strong>Congratulations! You have successfully installed and configured IntelliJ IDEA for Java development! 🚀</strong>
+				</blockquote>
+            `,
+
+            'first_program': `
+				<h1 class="blue-bolt">Running Your First Java Program</h1>
+
+				<p>Now that you have installed Java, set up environment variables, and configured an IDE, it's time to write and run your first Java program.</p>
+
+				<h2 class="orange-accent">Step 1: Create a Simple Java Program</h2>
+
+				<p>In Java, all programs must be inside a class, and execution starts from the <code class="code-inline">main</code> method.</p>
+
+				<h3 class="purple-text">1. Open Your IDE</h3>
+				<ul>
+					<li>If you haven't already, launch your IDE (IntelliJ IDEA, Eclipse, or VS Code).</li>
+					<li>Create a new Java project (if you haven't done so in the previous step).</li>
+				</ul>
+
+				<h3 class="purple-text">2. Create a Java File</h3>
+				<ol>
+					<li>In the <strong>Project Explorer</strong>, right-click on the <strong>src</strong> folder.</li>
+					<li>Select <strong>New > Java Class</strong>.</li>
+					<li>Name the class <code class="code-inline">HelloWorld</code>.</li>
+					<li>Click <strong>OK</strong>.</li>
+				</ol>
+
+				<h3 class="purple-text">3. Write Your First Java Program</h3>
+				<p>Replace the default template with the following Java code:</p>
+
+				<pre>
+				public class HelloWorld {
+					public static void main(String[] args) {
+						System.out.println("Hello, Java!");
+					}
+				}
+				</pre>
+
+				<p>This program will simply print <code class="code-inline">Hello, Java!</code> to the console.</p>
+
+				---
+
+				<h2 class="orange-accent">Step 2: Compile and Run the Java Program</h2>
+
+				<h3 class="purple-text">Method 1: Running in an IDE (Recommended)</h3>
+				<ol>
+					<li>Click the green **Run** button at the top of the IDE.</li>
+					<li>Alternatively, press <code class="code-inline">Shift + F10</code> in IntelliJ IDEA.</li>
+					<li>You should see the output in the **Run** window:</li>
+				</ol>
+
+				<pre>
+				Hello, Java!
+				</pre>
+
+				---
+
+				<h3 class="purple-text">Method 2: Running Java from the Command Line</h3>
+				<p>If you prefer to run Java programs using the terminal, follow these steps:</p>
+
+				<h3 class="purple-text">1. Open Command Prompt (CMD)</h3>
+				<ul>
+					<li>Press <code class="code-inline">Win + R</code>, type <code class="code-inline">cmd</code>, and press <strong>Enter</strong>.</li>
+				</ul>
+
+				<h3 class="purple-text">2. Navigate to Your Java File's Directory</h3>
+				<p>Use the <code class="code-inline">cd</code> command to change the directory to where your Java file is saved.</p>
+
+				<pre>
+				cd C:\Users\YourUsername\JavaProjects
+				</pre>
+
+				<h3 class="purple-text">3. Compile the Java Program</h3>
+				<p>Run the following command to compile the Java file:</p>
+
+				<pre>javac HelloWorld.java</pre>
+
+				<p>This will generate a compiled file named <code class="code-inline">HelloWorld.class</code>.</p>
+
+				<h3 class="purple-text">4. Run the Java Program</h3>
+				<p>Execute the compiled Java program using:</p>
+
+				<pre>java HelloWorld</pre>
+
+				<p>✅ Expected output:</p>
+				<pre>Hello, Java!</pre>
+
+				---
+
+				<h2 class="orange-accent">Step 3: Understanding the Java Program</h2>
+				<p>Let's break down the components of our first Java program:</p>
+
+				<ul>
+					<li><code class="code-inline">public class HelloWorld</code>: Defines a class named <strong>HelloWorld</strong>.</li>
+					<li><code class="code-inline">public static void main(String[] args)</code>: This is the main method where Java starts execution.</li>
+					<li><code class="code-inline">System.out.println("Hello, Java!");</code>: Prints text to the console.</li>
+				</ul>
+
+				---
+
+				<h2 class="orange-accent">Step 4: Troubleshooting Common Issues</h2>
+
+				<h3 class="purple-text">1. "javac is not recognized" Error</h3>
+				<ul>
+					<li>This means Java is not set up correctly.</li>
+					<li>Make sure you have set the **JAVA_HOME** and **Path** variables correctly.</li>
+				</ul>
+
+				<h3 class="purple-text">2. "Could not find or load main class" Error</h3>
+				<ul>
+					<li>Ensure that your Java file is saved with the correct name (<code class="code-inline">HelloWorld.java</code>).</li>
+					<li>Run Java without the <code class="code-inline">.class</code> extension:
+						<pre>java HelloWorld</pre>
+					</li>
+				</ul>
+
+				<h3 class="purple-text">3. "Main method not found" Error</h3>
+				<ul>
+					<li>Ensure that your main method is correctly written:</li>
+					<pre>public static void main(String[] args)</pre>
+				</ul>
+
+				---
+
+				<h2 class="orange-accent">Step 5: Running a More Advanced Program</h2>
+
+				<p>Now, let's try a more interactive Java program:</p>
+
+				<pre>
+				import java.util.Scanner;
+
+				public class UserInput {
+					public static void main(String[] args) {
+						Scanner scanner = new Scanner(System.in);
+						System.out.print("Enter your name: ");
+						String name = scanner.nextLine();
+						System.out.println("Hello, " + name + "!");
+					}
+				}
+				</pre>
+
+				<h3 class="purple-text">1. How This Works</h3>
+				<ul>
+					<li>We use the <code class="code-inline">Scanner</code> class to take user input.</li>
+					<li>The program prompts the user to enter their name and then greets them.</li>
+				</ul>
+
+				<h3 class="purple-text">2. Run the Program</h3>
+				<pre>javac UserInput.java</pre>
+				<pre>java UserInput</pre>
+
+				<p>✅ Expected output:</p>
+				<pre>
+				Enter your name: John
+				Hello, John!
+				</pre>
+
+				---
+
+				<h2 class="orange-accent">Step 6: Next Steps</h2>
+				<ul>
+					<li>✔ Learn about **Java variables and data types**.</li>
+					<li>✔ Practice **conditional statements and loops**.</li>
+					<li>✔ Start working on **small Java projects**.</li>
+				</ul>
+
+				<blockquote class="quote">
+					🎉 <strong>Congratulations! You have successfully run your first Java program! 🚀</strong>
+				</blockquote>
+
+            `,
+	
+			'dev_tools': `
+				<h1 class="blue-bolt">Installing Java Development Tools</h1>
+
+				<p>To develop Java applications efficiently, you need additional development tools that enhance productivity, debugging, and project management.</p>
+
+				<p>Here are the essential Java development tools:</p>
+				<ul>
+					<li><strong>Java Development Kit (JDK)</strong> (Already Installed)</li>
+					<li><strong>Build Automation Tools</strong> (Maven, Gradle)</li>
+					<li><strong>Dependency Management</strong> (Maven Central Repository, JitPack)</li>
+					<li><strong>Debugging Tools</strong> (JConsole, Java VisualVM)</li>
+					<li><strong>Version Control Systems</strong> (Git, GitHub)</li>
+					<li><strong>Code Formatters & Linters</strong> (Checkstyle, PMD, SpotBugs)</li>
+				</ul>
+
+				<h2 class="orange-accent">Step 1: Installing Maven (Build Automation Tool)</h2>
+
+				<h3 class="purple-text">1. Download Apache Maven</h3>
+				<ol>
+					<li>Go to the official Maven website: 
+						<a href="https://maven.apache.org/download.cgi" target="_blank">Apache Maven Download Page</a>
+					</li>
+					<li>Download the <strong>Binary zip file</strong> for Windows.</li>
+				</ol>
+
+				<h3 class="purple-text">2. Install Maven</h3>
+				<ol>
+					<li>Extract the downloaded ZIP file to a preferred location (e.g., 
+						<code class="code-inline">C:\\Program Files\\Apache\\Maven</code>).
+					</li>
+				</ol>
+
+				<h3 class="purple-text">3. Set Up Environment Variables</h3>
+				<ol>
+					<li>Open <strong>System Properties</strong> (<code class="code-inline">Win + R</code>, type <code class="code-inline">sysdm.cpl</code>, press Enter).</li>
+					<li>Click <strong>Environment Variables...</strong>.</li>
+					<li>Under <strong>System Variables</strong>, click <strong>New</strong>.</li>
+					<li>Enter the following details:</li>
+					<ul>
+						<li><strong>Variable name:</strong> <code class="code-inline">MAVEN_HOME</code></li>
+						<li><strong>Variable value:</strong> <code class="code-inline">C:\\Program Files\\Apache\\Maven</code></li>
+					</ul>
+					<li>Click <strong>OK</strong>.</li>
+				</ol>
+
+				<h3 class="purple-text">4. Update the Path Variable</h3>
+				<ol>
+					<li>In the <strong>System Variables</strong> section, find <strong>Path</strong> and click <strong>Edit</strong>.</li>
+					<li>Click <strong>New</strong>, then add:</li>
+					<pre><code class="code-inline">%MAVEN_HOME%\\bin</code></pre>
+					<li>Click <strong>OK</strong>.</li>
+				</ol>
+
+				<h3 class="purple-text">5. Verify Maven Installation</h3>
+				<ol>
+					<li>Open <strong>Command Prompt</strong> (<code class="code-inline">Win + R</code>, type <code class="code-inline">cmd</code>, press <strong>Enter</strong>).</li>
+					<li>Run the following command:</li>
+					<pre><code class="code-inline">mvn -version</code></pre>
+					<li>✅ Expected Output:</li>
+					<pre>
+Apache Maven X.X.X (Revision XXXXXXXX)
+Maven home: C:\Program Files\Apache\Maven
+Java version: XX, vendor: Oracle Corporation
+					</pre>
+				</ol>
+
+				<h2 class="orange-accent">Step 2: Installing Gradle (Alternative Build Tool)</h2>
+
+				<h3 class="purple-text">1. Download and Install Gradle</h3>
+				<ol>
+					<li>Go to the official Gradle website: 
+						<a href="https://gradle.org/install/" target="_blank">Gradle Install Page</a>
+					</li>
+					<li>Download the <strong>Binary-only</strong> ZIP distribution.</li>
+					<li>Extract it to a location (e.g., <code class="code-inline">C:\\Program Files\\Gradle</code>).</li>
+				</ol>
+
+				<h3 class="purple-text">2. Set Up Environment Variables for Gradle</h3>
+				<ol>
+					<li>Open <strong>System Properties</strong> and click <strong>Environment Variables...</strong>.</li>
+					<li>Under <strong>System Variables</strong>, click <strong>New</strong>.</li>
+					<li>Enter:</li>
+					<ul>
+						<li><strong>Variable name:</strong> <code class="code-inline">GRADLE_HOME</code></li>
+						<li><strong>Variable value:</strong> <code class="code-inline">C:\\Program Files\\Gradle</code></li>
+					</ul>
+				</ol>
+
+				<h3 class="purple-text">3. Update the Path Variable</h3>
+				<ol>
+					<li>Under <strong>System Variables</strong>, find <strong>Path</strong> and click <strong>Edit</strong>.</li>
+					<li>Add:</li>
+					<pre><code class="code-inline">%GRADLE_HOME%\\bin</code></pre>
+				</ol>
+
+				<h3 class="purple-text">4. Verify Gradle Installation</h3>
+				<ol>
+					<li>Open <strong>Command Prompt</strong>.</li>
+					<li>Run:</li>
+					<pre><code class="code-inline">gradle -version</code></pre>
+					<li>✅ Expected Output:</li>
+					<pre><code class="code-inline">
+			Gradle X.X
+			Build time: XXXX-XX-XX
+					</code></pre>
+				</ol>
+
+				<h2 class="orange-accent">Step 3: Setting Up Git for Java Projects</h2>
+
+				<h3 class="purple-text">1. Install Git</h3>
+				<ol>
+					<li>Go to the official Git website: 
+						<a href="https://git-scm.com/downloads" target="_blank">Git Download Page</a>
+					</li>
+					<li>Download and install Git for Windows.</li>
+				</ol>
+
+				<h3 class="purple-text">2. Verify Git Installation</h3>
+				<ol>
+					<li>Open <strong>Command Prompt</strong> and run:</li>
+					<pre><code class="code-inline">git --version</code></pre>
+				</ol>
+
+				<blockquote class="quote">
+					🎉 <strong>Congratulations! You have successfully installed essential Java development tools! 🚀</strong>
+				</blockquote>
+			`,
+
+			'troubleshooting': `
+				<h1 class="blue-bolt">Troubleshooting Common Issues</h1>
+
+				<p>When working with Java, you may encounter common issues that can be resolved with a few debugging steps. Below are some of the most frequent problems and their solutions.</p>
+
+				<h2 class="orange-accent">Issue 1: "javac is not recognized as an internal or external command"</h2>
+				<p>This error indicates that Java is not properly set up in your system's PATH variable.</p>
+
+				<h3 class="purple-text">Solution:</h3>
+				<ol>
+					<li>Ensure that the JDK is installed on your system.</li>
+					<li>Open **System Properties** by pressing <code class="code-inline">Win + R</code>, typing <code class="code-inline">sysdm.cpl</code>, and pressing Enter.</li>
+					<li>Go to **Advanced** > **Environment Variables**.</li>
+					<li>Under **System Variables**, find **Path**, then click **Edit**.</li>
+					<li>Add the Java bin directory path, e.g., <code class="code-inline">C:\Program Files\Java\jdk-XX\bin</code>.</li>
+					<li>Click **OK**, then restart your terminal and try running <code class="code-inline">javac -version</code>.</li>
+				</ol>
+
+				<h2 class="orange-accent">Issue 2: "Could not find or load main class"</h2>
+				<p>This error happens when Java cannot find the specified class file.</p>
+
+				<h3 class="purple-text">Solution:</h3>
+				<ol>
+					<li>Ensure your Java file is saved with the correct filename (it must match the class name).</li>
+					<li>Compile the Java file using:
+						<pre>javac MyProgram.java</pre>
+					</li>
+					<li>Run the Java program without the <code class="code-inline">.class</code> extension:
+						<pre>java MyProgram</pre>
+					</li>
+					<li>If the issue persists, make sure you're running the command from the same directory as the compiled file.</li>
+				</ol>
+
+				<h2 class="orange-accent">Issue 3: "Main method not found in class"</h2>
+				<p>This happens when your Java program lacks a proper <code class="code-inline">main</code> method.</p>
+
+				<h3 class="purple-text">Solution:</h3>
+				<p>Ensure your Java class has the following structure:</p>
+				<pre>
+				public class MyProgram {
+					public static void main(String[] args) {
+						System.out.println("Hello, Java!");
+					}
+				}
+				</pre>
+
+				<h2 class="orange-accent">Issue 4: "java.lang.NullPointerException"</h2>
+				<p>A <code class="code-inline">NullPointerException</code> occurs when a program attempts to use an object reference that has not been initialized.</p>
+
+				<h3 class="purple-text">Solution:</h3>
+				<ol>
+					<li>Check if you're trying to access a variable that has not been initialized.</li>
+					<li>Use an <code class="code-inline">if</code> condition to ensure the object is not null before using it.</li>
+					<li>Example fix:
+						<pre>
+						if (myObject != null) {
+							System.out.println(myObject.toString());
+						}
+						</pre>
+					</li>
+				</ol>
+
+				<h2 class="orange-accent">Issue 5: "ClassNotFoundException"</h2>
+				<p>This error indicates that Java is unable to locate a class at runtime.</p>
+
+				<h3 class="purple-text">Solution:</h3>
+				<ul>
+					<li>Check if the class exists in the correct package.</li>
+					<li>Ensure you're running the program from the correct directory.</li>
+					<li>Verify that the class is compiled properly.</li>
+				</ul>
+
+				<h2 class="orange-accent">Issue 6: "OutOfMemoryError"</h2>
+				<p>This error happens when your Java program runs out of allocated memory.</p>
+
+				<h3 class="purple-text">Solution:</h3>
+				<ul>
+					<li>Increase the memory allocation by running Java with more heap space:</li>
+					<pre>java -Xmx512m MyProgram</pre>
+					<li>Optimize memory usage by releasing unused objects.</li>
+					<li>Use the **Garbage Collector**: <code class="code-inline">System.gc();</code></li>
+				</ul>
+
+				<blockquote class="quote">
+					🎉 <strong>By following these solutions, you can resolve common Java errors and improve your coding experience! 🚀</strong>
+				</blockquote>
+			`,
+
+			'intro_java': `
+				<h1 class="blue-bolt">Getting Started with Java</h1>
+
+				<!-- 1. Introduction to Java -->
+				<h2 class="orange-accent">1. Introduction to Java</h2>
+
+				<h3 class="purple-text">What is Java?</h3>
+				<p>
+				  Java is a high-level, object-oriented programming language developed by <strong>Sun Microsystems</strong> (now owned by <strong>Oracle</strong>). It is widely used for building cross-platform applications—from web applications to mobile and enterprise software. Java follows the "Write Once, Run Anywhere" (WORA) principle, meaning Java programs can run on different operating systems without modification.
+				</p>
+
+				<h3 class="purple-text">History and Evolution of Java</h3>
+				<ul>
+				  <li><strong>1991</strong> - James Gosling and his team at Sun Microsystems started developing Java (originally called <em>Oak</em>).</li>
+				  <li><strong>1995</strong> - Java was officially released.</li>
+				  <li><strong>2000s</strong> - Java gained popularity for enterprise applications, Android apps, and web development.</li>
+				  <li><strong>2010s</strong> - Oracle acquired Sun Microsystems, introducing new features and updates.</li>
+				  <li><strong>Present</strong> - Java continues to evolve with modern versions like <strong>Java 17 (LTS)</strong> and <strong>Java 21 (LTS)</strong>.</li>
+				</ul>
+
+				<h3 class="purple-text">Why Learn Java?</h3>
+				<p>
+				  Java is one of the most popular and widely used programming languages. Here’s why:
+				</p>
+				<ul>
+				  <li><strong>Cross-Platform Compatibility</strong> – Java runs on Windows, macOS, Linux, and even mobile devices.</li>
+				  <li><strong>Object-Oriented</strong> – Encourages modular and reusable code.</li>
+				  <li><strong>Robust and Secure</strong> – Java has built-in security features and strong memory management.</li>
+				  <li><strong>Industry Demand</strong> – Java is widely used in enterprise software, web development, and Android applications.</li>
+				  <li><strong>Large Community &amp; Support</strong> – Millions of developers contribute to Java's growth.</li>
+				</ul>
+
+				<h3 class="purple-text">Applications of Java</h3>
+				<p>
+				  Java is used in various fields, including:
+				</p>
+				<ul>
+				  <li><strong>Web Development</strong> – Backend development (Spring, Hibernate)</li>
+				  <li><strong>Mobile Development</strong> – Android applications</li>
+				  <li><strong>Enterprise Applications</strong> – Large-scale business systems</li>
+				  <li><strong>Embedded Systems</strong> – Smart devices, IoT</li>
+				  <li><strong>Game Development</strong> – Minecraft was originally written in Java!</li>
+				  <li><strong>Big Data &amp; AI</strong> – Java is used in tools like Apache Hadoop</li>
+				</ul>
+
+				<!-- 2. Understanding Java Development Environment -->
+				<h2 class="orange-accent">2. Understanding Java Development Environment</h2>
+
+				<h3 class="purple-text">Java Development Kit (JDK)</h3>
+				<p>
+				  The <strong>JDK</strong> is a software development kit that includes:
+				</p>
+				<ul>
+				  <li><strong>Java Compiler (javac)</strong> – Converts Java code into bytecode.</li>
+				  <li><strong>Java Runtime Environment (JRE)</strong> – Required to run Java programs.</li>
+				  <li><strong>Java Libraries</strong> – Pre-built classes and functions.</li>
+				  <li><strong>Development Tools</strong> – Debuggers, profilers, and documentation tools.</li>
+				</ul>
+
+				<h3 class="purple-text">JRE vs JDK: What's the Difference?</h3>
+				<table class="table">
+				  <thead>
+					<tr>
+					  <th>Feature</th>
+					  <th>JRE (Java Runtime Environment)</th>
+					  <th>JDK (Java Development Kit)</th>
+					</tr>
+				  </thead>
+				  <tbody>
+					<tr>
+					  <td>Purpose</td>
+					  <td>Runs Java programs</td>
+					  <td>Develops and runs Java programs</td>
+					</tr>
+					<tr>
+					  <td>Contains JVM?</td>
+					  <td>Yes</td>
+					  <td>Yes</td>
+					</tr>
+					<tr>
+					  <td>Contains Compiler?</td>
+					  <td>No</td>
+					  <td>Yes (javac)</td>
+					</tr>
+					<tr>
+					  <td>Includes Development Tools?</td>
+					  <td>No</td>
+					  <td>Yes</td>
+					</tr>
+				  </tbody>
+				</table>
+				<p>
+				  If you only need to <strong>run</strong> Java programs, install the JRE. If you want to <strong>write</strong> and <strong>compile</strong> Java programs, install the JDK.
+				</p>
+
+				<h3 class="purple-text">Java Virtual Machine (JVM) and How It Works</h3>
+				<p>
+				  The <strong>JVM</strong> is a key part of Java’s ability to run anywhere. It takes Java bytecode (generated by the compiler) and converts it into machine code for different operating systems.
+				</p>
+				<p>
+				  <strong>How Java Works Internally:</strong>
+				</p>
+				<ol>
+				  <li><strong>Write Code</strong> – You write a Java program (a <code class="code-inline">.java</code> file).</li>
+				  <li><strong>Compile</strong> – The Java compiler (<code class="code-inline">javac</code>) converts the code into bytecode (a <code class="code-inline">.class</code> file).</li>
+				  <li><strong>JVM Execution</strong> – The JVM reads the bytecode and executes it on your operating system.</li>
+				</ol>
+
+				<h3 class="purple-text">Setting Up Java on Different Operating Systems</h3>
+				<h4 class="purple-text">Windows</h4>
+				<ol>
+				  <li>Download the latest JDK from the official site (e.g., Oracle or OpenJDK).</li>
+				  <li>Run the installer and follow the steps.</li>
+				  <li>Set up environment variables (<code class="code-inline">JAVA_HOME</code> and <code class="code-inline">Path</code>).</li>
+				</ol>
+
+				<h4 class="purple-text">macOS</h4>
+				<ol>
+				  <li>Install Java using Homebrew:
+					<pre><code>brew install openjdk</code></pre>
+				  </li>
+				  <li>Set up the correct paths:
+					<pre><code>export PATH="/usr/local/opt/openjdk/bin:$PATH"</code></pre>
+				  </li>
+				</ol>
+
+				<h4 class="purple-text">Linux (Ubuntu/Debian)</h4>
+				<ol>
+				  <li>Update your package list and install Java:
+					<pre><code>sudo apt update 
+ sudo apt install openjdk-17-jdk</code></pre>
+				  </li>
+				  <li>Verify the installation:
+					<pre><code>java -version</code></pre>
+				  </li>
+				</ol>
+			`,
+
+           'understand_env': `
+				<h1 class="blue-bolt">Understanding Java</h1>
+
+				<!-- 1. Java Syntax and Structure -->
+				<h2 class="orange-accent">1. Java Syntax and Structure</h2>
+
+				<h3 class="purple-text">Basic Structure of a Java Program</h3>
+				<p>Every Java program follows a specific structure. Below is a simple Java program:</p>
+
+				<pre><code class="code-inline">
+				public class HelloWorld {
+					public static void main(String[] args) {
+						System.out.println("Hello, Java!");
+					}
+				}
+				</code></pre>
+
+				<p>Let’s break it down:</p>
+				<ul>
+					<li><strong>public class HelloWorld</strong>: Defines a class named <code class="code-inline">HelloWorld</code>. The class name should match the file name (e.g., <code class="code-inline">HelloWorld.java</code>).</li>
+					<li><strong>public static void main(String[] args)</strong>: This is the main method, the entry point of any Java application.</li>
+					<li><strong>System.out.println("Hello, Java!");</strong>: Prints text to the console.</li>
+				</ul>
+
+				<h3 class="purple-text">Java Comments</h3>
+				<p>Comments in Java help explain the code and are ignored by the compiler.</p>
+
+				<ul>
+					<li><strong>Single-line comment</strong>: <code class="code-inline">// This is a single-line comment</code></li>
+					<li><strong>Multi-line comment</strong>: 
+						<pre><code class="code-inline">
+				/*
+				 This is a 
+				 multi-line comment
+				 */
+						</code></pre>
+					</li>
+					<li><strong>Javadoc comment</strong>: Used for documentation.
+						<pre><code class="code-inline">
+				/**
+				 * This is a JavaDoc comment
+				 * Used for generating documentation
+				 */
+						</code></pre>
+					</li>
+				</ul>
+
+				<!-- 2. Java Variables and Data Types -->
+				<h2 class="orange-accent">2. Java Variables and Data Types</h2>
+
+				<h3 class="purple-text">What is a Variable?</h3>
+				<p>A variable is a container that holds data values. In Java, every variable has a specific <strong>data type</strong>.</p>
+
+				<h3 class="purple-text">Declaring Variables</h3>
+				<p>Syntax:</p>
+				<pre><code class="code-inline">
+				dataType variableName = value;
+				</code></pre>
+
+				<p>Example:</p>
+				<pre><code class="code-inline">
+				int age = 25;
+				String name = "John";
+				</code></pre>
+
+				<h3 class="purple-text">Types of Variables in Java</h3>
+				<ul>
+					<li><strong>Local Variables</strong>: Declared inside a method or block.</li>
+					<li><strong>Instance Variables</strong>: Belong to an object, declared inside a class.</li>
+					<li><strong>Static Variables</strong>: Declared with <code class="code-inline">static</code> keyword, shared among all instances.</li>
+				</ul>
+
+				<h3 class="purple-text">Java Data Types</h3>
+				<p>Java has two main types of data:</p>
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Data Type</th>
+							<th>Size</th>
+							<th>Example</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>int</strong></td>
+							<td>4 bytes</td>
+							<td><code class="code-inline">int age = 30;</code></td>
+						</tr>
+						<tr>
+							<td><strong>double</strong></td>
+							<td>8 bytes</td>
+							<td><code class="code-inline">double price = 19.99;</code></td>
+						</tr>
+						<tr>
+							<td><strong>char</strong></td>
+							<td>2 bytes</td>
+							<td><code class="code-inline">char grade = 'A';</code></td>
+						</tr>
+						<tr>
+							<td><strong>boolean</strong></td>
+							<td>1 bit</td>
+							<td><code class="code-inline">boolean isJavaFun = true;</code></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h3 class="purple-text">Type Casting</h3>
+				<p>Java supports type conversion between compatible data types.</p>
+
+				<h4 class="purple-text">Implicit Casting (Widening Conversion)</h4>
+				<p>Smaller data types are automatically converted to larger types.</p>
+				<pre><code class="code-inline">
+				int num = 10;
+				double newNum = num; // int to double
+				</code></pre>
+
+				<h4 class="purple-text">Explicit Casting (Narrowing Conversion)</h4>
+				<p>Larger data types are manually converted to smaller types.</p>
+				<pre><code class="code-inline">
+				double num = 9.7;
+				int newNum = (int) num; // double to int
+				</code></pre>
+
+				<!-- 3. Java Operators -->
+				<h2 class="orange-accent">3. Java Operators</h2>
+
+				<h3 class="purple-text">Arithmetic Operators</h3>
+				<p>Used for basic mathematical operations.</p>
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Operator</th>
+							<th>Description</th>
+							<th>Example</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>+</td>
+							<td>Addition</td>
+							<td><code class="code-inline">5 + 3 // 8</code></td>
+						</tr>
+						<tr>
+							<td>-</td>
+							<td>Subtraction</td>
+							<td><code class="code-inline">9 - 4 // 5</code></td>
+						</tr>
+						<tr>
+							<td>*</td>
+							<td>Multiplication</td>
+							<td><code class="code-inline">7 * 2 // 14</code></td>
+						</tr>
+						<tr>
+							<td>/</td>
+							<td>Division</td>
+							<td><code class="code-inline">10 / 2 // 5</code></td>
+						</tr>
+						<tr>
+							<td>%</td>
+							<td>Modulus (Remainder)</td>
+							<td><code class="code-inline">10 % 3 // 1</code></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h3 class="purple-text">Comparison Operators</h3>
+				<p>Used to compare values.</p>
+
+				<ul>
+					<li><code class="code-inline">==</code> (Equal to)</li>
+					<li><code class="code-inline">!=</code> (Not equal to)</li>
+					<li><code class="code-inline">></code> (Greater than)</li>
+					<li><code class="code-inline"><</code> (Less than)</li>
+				</ul>
+
+				<h3 class="purple-text">Logical Operators</h3>
+				<p>Used for boolean logic.</p>
+
+				<ul>
+					<li><code class="code-inline">&&</code> (AND)</li>
+					<li><code class="code-inline">||</code> (OR)</li>
+					<li><code class="code-inline">!</code> (NOT)</li>
+				</ul>
+
+				<!-- 4. Java Input and Output -->
+				<h2 class="orange-accent">4. Java Input and Output</h2>
+
+				<h3 class="purple-text">Printing Output</h3>
+				<pre><code class="code-inline">
+				System.out.println("Hello, Java!");
+				</code></pre>
+
+				<h3 class="purple-text">Taking User Input</h3>
+				<pre>
+				import java.util.Scanner;
+
+				public class UserInput {
+					public static void main(String[] args) {
+						Scanner scanner = new Scanner(System.in);
+						System.out.print("Enter your name: ");
+						String name = scanner.nextLine();
+						System.out.println("Hello, " + name + "!");
+					}
+				}
+				</pre>
+
+
+				<p>This section provides a strong foundation for understanding Java. Next, we will move to **"Basic Java"**, where we explore loops, conditionals, and arrays.</p>
+				`,
+
+			'basic_syntax':`
+				<div class="content" id="basic_syntax">
+					<h1 class="blue-bolt">Java Data Types, Syntax, Output, Variables, String, Operator, Math</h1>
+					
+					<h2 class="orange-accent">1. Writing and Running Your First Java Program</h2>
+					<p>Java programs start execution from the <code class="code-inline">main()</code> method. The basic structure of a Java program includes a class definition and the main method.</p>
+					
+					<h3 class="purple-text">Example 1: Hello, World!</h3>
+					<pre>
+					public class HelloWorld {
+						public static void main(String[] args) {
+							System.out.println("Hello, World!");
+						}
+					}
+					</pre>
+					<p>This program prints "Hello, World!" to the console.</p>
+					
+					<h2 class="orange-accent">2. Understanding Java Syntax and Structure</h2>
+					<ul>
+						<li><strong>Case Sensitivity:</strong> Java is case-sensitive, meaning <code class="code-inline">Hello</code> and <code class="code-inline">hello</code> are different.</li>
+						<li><strong>Class Naming:</strong> The filename must match the class name (e.g., <code class="code-inline">HelloWorld.java</code>).</li>
+						<li><strong>Method Naming:</strong> The <code class="code-inline">main()</code> method is the entry point of any Java application.</li>
+						<li><strong>Comments:</strong> Use <code class="code-inline">//</code> for single-line comments and <code class="code-inline">/* */</code> for multi-line comments.</li>
+					</ul>
+					
+					<h2 class="orange-accent">3. Understanding Java Data Types & Variables</h2>
+					<p>Java has two main categories of data types:</p>
+					<ul>
+						<li><strong>Primitive Data Types:</strong> <code class="code-inline">int</code>, <code class="code-inline">double</code>, <code class="code-inline">char</code>, <code class="code-inline">boolean</code>, <code class="code-inline">byte</code>, <code class="code-inline">short</code>, <code class="code-inline">long</code>, <code class="code-inline">float</code>.</li>
+						<li><strong>Reference Data Types:</strong> <code class="code-inline">String</code>, <code class="code-inline">Arrays</code>, <code class="code-inline">Objects</code>.</li>
+					</ul>
+					
+					<h3 class="purple-text">Example 2: Using Variables and Data Types</h3>
+					<pre>
+					public class DataTypesExample {
+						public static void main(String[] args) {
+							int age = 25;
+							double height = 5.9;
+							char grade = 'A';
+							boolean isStudent = true;
+							String name = "John Doe";
+							long distance = 9876543210L;
+							float pi = 3.14f;
+							short temperature = 120;
+							byte smallNumber = 42;
+							
+							System.out.println("Name: " + name);
+							System.out.println("Age: " + age);
+							System.out.println("Height: " + height + " feet");
+							System.out.println("Grade: " + grade);
+							System.out.println("Is a student? " + isStudent);
+							System.out.println("Distance: " + distance);
+							System.out.println("Value of Pi: " + pi);
+							System.out.println("Temperature: " + temperature);
+							System.out.println("Small Number: " + smallNumber);
+						}
+					}
+					</pre>
+					<p>This program demonstrates different data types and prints their values.</p>
+					
+					<h2 class="orange-accent">4. Type Casting & Type Conversion</h2>
+					<p>Java allows automatic and manual type conversion.</p>
+					
+					<h3 class="purple-text">Example 3: Type Casting</h3>
+					<pre>
+					public class TypeCastingExample {
+						public static void main(String[] args) {
+							int num = 10;
+							double convertedNum = num; // Widening (Automatic)
+							
+							double pi = 3.14159;
+							int roundedPi = (int) pi; // Narrowing (Manual)
+							
+							System.out.println("Converted Number (int to double): " + convertedNum);
+							System.out.println("Rounded Pi (double to int): " + roundedPi);
+						}
+					}
+					</pre>
+					<p>This example demonstrates type casting between different numeric data types.</p>
+					
+					<h2 class="orange-accent">5. Java Operators & Expressions</h2>
+					<ul>
+						<li><strong>Arithmetic Operators:</strong> <code class="code-inline">+ - * / % ++ --</code></li>
+						<li><strong>Comparison Operators:</strong> <code class="code-inline">== != < > <= >=</code></li>
+						<li><strong>Logical Operators:</strong> <code class="code-inline">&& || !</code></li>
+						<li><strong>Assignment Operators:</strong> <code class="code-inline">= += -= *= /= %=</code></li>
+					</ul>
+					
+					<h3 class="purple-text">Example 4: Arithmetic Operations</h3>
+					<pre>
+					public class MathOperations {
+						public static void main(String[] args) {
+							int a = 10, b = 5;
+							System.out.println("Addition: " + (a + b));
+							System.out.println("Subtraction: " + (a - b));
+							System.out.println("Multiplication: " + (a * b));
+							System.out.println("Division: " + (a / b));
+							System.out.println("Modulus: " + (a % b));
+						}
+					}
+					</pre>
+					
+					<h2 class="orange-accent">6. User Input & Output in Java</h2>
+					<p>We can use the <code class="code-inline">Scanner</code> class to get input from users.</p>
+					
+					<h3 class="purple-text">Example 5: Taking User Input</h3>
+					<pre>
+					import java.util.Scanner;
+					public class UserInputExample {
+						public static void main(String[] args) {
+							Scanner scanner = new Scanner(System.in);
+							System.out.print("Enter your name: ");
+							String name = scanner.nextLine();
+							System.out.print("Enter your age: ");
+							int age = scanner.nextInt();
+							
+							System.out.println("Hello, " + name + "! You are " + age + " years old.");
+						}
+					}
+					</pre>
+					<p>This program prompts the user to enter their name and age, then prints a greeting.</p>
+				</div>
+				`,
+
+			'condition_looping':`
+				<div class="content" id="condition_looping">
+					<h1 class="blue-bolt">Java Conditions & Looping</h1>
+					
+					<h2 class="orange-accent">1. Conditional Statements in Java</h2>
+					<p>Java provides different types of conditional statements to control the flow of a program. These statements allow decisions to be made based on conditions.</p>
+					
+					<h3 class="purple-text">1.1 If-Else Statement</h3>
+					<p>The <code class="code-inline">if</code> statement is used to execute a block of code only if a certain condition is true. If the condition is false, the <code class="code-inline">else</code> block executes.</p>
+					<pre>
+					public class IfExample {
+						public static void main(String[] args) {
+							int age = 20;
+							if (age >= 18) {
+								System.out.println("You are eligible to vote.");
+							} else {
+								System.out.println("You are not eligible to vote.");
+							}
+						}
+					}
+					</pre>
+					
+					<h3 class="purple-text">1.2 Nested If-Else</h3>
+					<p>A nested if-else statement allows multiple conditions to be checked in a hierarchical manner.</p>
+					<pre>
+					public class NestedIfExample {
+						public static void main(String[] args) {
+							int score = 85;
+							if (score >= 90) {
+								System.out.println("Grade: A");
+							} else if (score >= 80) {
+								System.out.println("Grade: B");
+							} else {
+								System.out.println("Grade: C");
+							}
+						}
+					}
+					</pre>
+					
+					<h3 class="purple-text">1.3 Switch Statement</h3>
+					<p>The <code class="code-inline">switch</code> statement is used to select one of many code blocks to be executed.</p>
+					<pre>
+					public class SwitchExample {
+						public static void main(String[] args) {
+							int day = 3;
+							switch (day) {
+								case 1: System.out.println("Monday"); break;
+								case 2: System.out.println("Tuesday"); break;
+								case 3: System.out.println("Wednesday"); break;
+								default: System.out.println("Invalid Day");
+							}
+						}
+					}
+					</pre>
+					
+					<h2 class="orange-accent">2. Looping in Java</h2>
+					<p>Loops allow a block of code to be executed multiple times based on a condition.</p>
+					
+					<h3 class="purple-text">2.1 For Loop</h3>
+					<p>A <code class="code-inline">for</code> loop runs a block of code a specified number of times.</p>
+					<pre>
+					public class ForLoopExample {
+						public static void main(String[] args) {
+							for (int i = 1; i <= 5; i++) {
+								System.out.println("Number: " + i);
+							}
+						}
+					}
+					</pre>
+					
+					<h3 class="purple-text">2.2 While Loop</h3>
+					<p>The <code class="code-inline">while</code> loop runs as long as the specified condition remains true.</p>
+					<pre>
+					public class WhileLoopExample {
+						public static void main(String[] args) {
+							int count = 1;
+							while (count <= 5) {
+								System.out.println("Count: " + count);
+								count++;
+							}
+						}
+					}
+					</pre>
+					
+					<h3 class="purple-text">2.3 Do-While Loop</h3>
+					<p>The <code class="code-inline">do-while</code> loop ensures the code executes at least once before checking the condition.</p>
+					<pre>
+					public class DoWhileExample {
+						public static void main(String[] args) {
+							int num = 1;
+							do {
+								System.out.println("Number: " + num);
+								num++;
+							} while (num <= 5);
+						}
+					}
+					</pre>
+					
+					<h3 class="purple-text">2.4 Enhanced For Loop (For-Each Loop)</h3>
+					<p>The enhanced for loop (for-each) is used to iterate over arrays or collections.</p>
+					<pre>
+					public class ForEachExample {
+						public static void main(String[] args) {
+							int[] numbers = {10, 20, 30, 40};
+							for (int num : numbers) {
+								System.out.println("Number: " + num);
+							}
+						}
+					}
+					</pre>
+					
+					<h2 class="orange-accent">3. Nested Loops</h2>
+					<p>Loops can be nested inside each other to perform more complex iterations.</p>
+					<pre>
+					public class NestedLoopExample {
+						public static void main(String[] args) {
+							for (int i = 1; i <= 3; i++) {
+								for (int j = 1; j <= 3; j++) {
+									System.out.println("i: " + i + " j: " + j);
+								}
+							}
+						}
+					}
+					</pre>
+					
+					<h2 class="orange-accent">4. Loop Control Statements</h2>
+					<p>Java provides control statements to modify the loop behavior.</p>
+					
+					<h3 class="purple-text">4.1 Break Statement</h3>
+					<p>The <code class="code-inline">break</code> statement is used to exit a loop before it completes.</p>
+					<pre>
+					public class BreakExample {
+						public static void main(String[] args) {
+							for (int i = 1; i <= 5; i++) {
+								if (i == 3) {
+									break;
+								}
+								System.out.println("Number: " + i);
+							}
+						}
+					}
+					</pre>
+					
+					<h3 class="purple-text">4.2 Continue Statement</h3>
+					<p>The <code class="code-inline">continue</code> statement skips the current iteration and moves to the next one.</p>
+					<pre>
+					public class ContinueExample {
+						public static void main(String[] args) {
+							for (int i = 1; i <= 5; i++) {
+								if (i == 3) {
+									continue;
+								}
+								System.out.println("Number: " + i);
+							}
+						}
+					}
+					</pre>
+				</div>
+
+				`,
+
+
+
+			'break_continue_array':`
+				<div class="content" id="break_continue_array">
+					<h1 class="blue-bolt">Break, Continue & Arrays in Java</h1>
+
+					<h2 class="orange-accent">1. The Break Statement</h2>
+					<p>The <code class="code-inline">break</code> statement is used to exit a loop immediately when a specified condition is met. It is commonly used inside loops to terminate the iteration early.</p>
+
+					<h3 class="purple-text">1.1 Using Break in a For Loop</h3>
+					<p>The following example stops the loop when <code class="code-inline">i</code> reaches 3.</p>
+					<pre>
+					public class BreakExample {
+						public static void main(String[] args) {
+							for (int i = 1; i <= 5; i++) {
+								if (i == 3) {
+									break; // Exits the loop when i is 3
+								}
+								System.out.println("Number: " + i);
+							}
+						}
+					}
+					</pre>
+
+					<h3 class="purple-text">1.2 Using Break in a While Loop</h3>
+					<p>The break statement can also be used in a <code class="code-inline">while</code> loop to stop execution when a certain condition is met.</p>
+					<pre>
+					public class BreakWhileExample {
+						public static void main(String[] args) {
+							int i = 1;
+							while (i <= 5) {
+								if (i == 4) {
+									break; // Stops the loop when i is 4
+								}
+								System.out.println("Count: " + i);
+								i++;
+							}
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">2. The Continue Statement</h2>
+					<p>The <code class="code-inline">continue</code> statement is used to skip the current iteration of a loop and move to the next iteration without executing the remaining code in the loop body.</p>
+
+					<h3 class="purple-text">2.1 Using Continue in a For Loop</h3>
+					<p>The following example skips printing number 3 but continues with the next numbers.</p>
+					<pre>
+					public class ContinueExample {
+						public static void main(String[] args) {
+							for (int i = 1; i <= 5; i++) {
+								if (i == 3) {
+									continue; // Skips number 3
+								}
+								System.out.println("Number: " + i);
+							}
+						}
+					}
+					</pre>
+
+					<h3 class="purple-text">2.2 Using Continue in a While Loop</h3>
+					<p>The continue statement can also be used in a while loop.</p>
+					<pre>
+					public class ContinueWhileExample {
+						public static void main(String[] args) {
+							int i = 0;
+							while (i < 5) {
+								i++;
+								if (i == 3) {
+									continue; // Skips printing when i is 3
+								}
+								System.out.println("Count: " + i);
+							}
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">3. Understanding Java Arrays</h2>
+					<p>Arrays in Java allow us to store multiple values in a single variable instead of declaring separate variables for each value.</p>
+
+					<h3 class="purple-text">3.1 Declaring and Initializing Arrays</h3>
+					<p>Java arrays can be declared, initialized, and accessed using an index.</p>
+					<pre>
+					public class ArrayExample {
+						public static void main(String[] args) {
+							int[] numbers = {10, 20, 30, 40, 50}; // Array declaration and initialization
+							System.out.println("First number: " + numbers[0]); // Accessing array elements
+						}
+					}
+					</pre>
+
+					<h3 class="purple-text">3.2 Looping Through an Array (For Loop)</h3>
+					<p>We can use a for loop to iterate through array elements.</p>
+					<pre>
+					public class LoopArrayExample {
+						public static void main(String[] args) {
+							int[] numbers = {5, 10, 15, 20};
+							for (int i = 0; i < numbers.length; i++) {
+								System.out.println("Number at index " + i + ": " + numbers[i]);
+							}
+						}
+					}
+					</pre>
+
+					<h3 class="purple-text">3.3 Using For-Each Loop with Arrays</h3>
+					<p>The enhanced for loop (for-each) makes it easier to iterate over arrays.</p>
+					<pre>
+					public class ForEachArrayExample {
+						public static void main(String[] args) {
+							String[] fruits = {"Apple", "Banana", "Cherry"};
+							for (String fruit : fruits) {
+								System.out.println("Fruit: " + fruit);
+							}
+						}
+					}
+					</pre>
+
+					<h3 class="purple-text">3.4 Multidimensional Arrays</h3>
+					<p>Multidimensional arrays allow storage of data in matrix-like structures.</p>
+					<pre>
+					public class MultiDimArrayExample {
+						public static void main(String[] args) {
+							int[][] matrix = {
+								{1, 2, 3},
+								{4, 5, 6},
+								{7, 8, 9}
+							};
+
+							for (int i = 0; i < matrix.length; i++) {
+								for (int j = 0; j < matrix[i].length; j++) {
+									System.out.print(matrix[i][j] + " ");
+								}
+								System.out.println(); // New line after each row
+							}
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">4. Common Array Operations</h2>
+
+					<h3 class="purple-text">4.1 Finding the Maximum Value in an Array</h3>
+					<p>Finding the largest number in an array using a loop.</p>
+					<pre>
+					public class MaxValueExample {
+						public static void main(String[] args) {
+							int[] numbers = {12, 34, 56, 78, 90, 23};
+							int max = numbers[0];
+							
+							for (int num : numbers) {
+								if (num > max) {
+									max = num;
+								}
+							}
+							System.out.println("Maximum Value: " + max);
+						}
+					}
+					</pre>
+
+					<h3 class="purple-text">4.2 Copying an Array</h3>
+					<p>Copying elements from one array to another.</p>
+					<pre>
+					public class CopyArrayExample {
+						public static void main(String[] args) {
+							int[] original = {1, 2, 3, 4, 5};
+							int[] copied = new int[original.length];
+
+							for (int i = 0; i < original.length; i++) {
+								copied[i] = original[i];
+							}
+
+							System.out.println("Copied Array: ");
+							for (int num : copied) {
+								System.out.print(num + " ");
+							}
+						}
+					}
+					</pre>
+
+					<h3 class="purple-text">4.3 Searching for an Element in an Array</h3>
+					<p>Checking if an element exists in an array.</p>
+					<pre>
+					public class SearchArrayExample {
+						public static void main(String[] args) {
+							int[] numbers = {10, 20, 30, 40, 50};
+							int searchValue = 30;
+							boolean found = false;
+
+							for (int num : numbers) {
+								if (num == searchValue) {
+									found = true;
+									break;
+								}
+							}
+
+							if (found) {
+								System.out.println("Value found in the array!");
+							} else {
+								System.out.println("Value not found.");
+							}
+						}
+					}
+					</pre>
+				</div>
+				`,
+				
+				
+			'java_methods':`
+				<div class="content" id="java_methods">
+					<h1 class="blue-bolt">Java Methods - All You Need to Know</h1>
+					
+					<h2 class="orange-accent">1. What is a Method in Java?</h2>
+					<p>A method is a block of code that performs a specific task. Instead of writing the same code multiple times, we define it once inside a method and call it whenever needed.</p>
+					
+					<h2 class="orange-accent">2. Why Use Methods?</h2>
+					<ul>
+						<li>✅ <strong>Code Reusability</strong> - Write once, use multiple times</li>
+						<li>✅ <strong>Improves Readability</strong> - Makes code easier to understand</li>
+						<li>✅ <strong>Easy Maintenance</strong> - Changes can be made in one place</li>
+						<li>✅ <strong>Reduces Errors</strong> - Less repetition means fewer chances of mistakes</li>
+					</ul>
+					
+					<h2 class="orange-accent">3. Structure of a Java Method</h2>
+					<p>A Java method has the following syntax:</p>
+					<pre>
+					returnType methodName(parameters) {
+						// Method body (code to execute)
+						return value; // (if applicable)
+					}
+					</pre>
+					
+					<h2 class="orange-accent">4. Defining and Calling Methods</h2>
+					<h3 class="purple-text">Example 1: Creating a Simple Method</h3>
+					<pre>
+					public class SimpleMethod {
+						public static void greet() {
+							System.out.println("Hello, welcome to Java Methods!");
+						}
+
+						public static void main(String[] args) {
+							greet();
+						}
+					}
+					</pre>
+					
+					<h2 class="orange-accent">5. Method Parameters and Return Types</h2>
+					<h3 class="purple-text">Example 2: Method with Parameters</h3>
+					<pre>
+					public class MethodWithParameters {
+						public static void greetUser(String name) {
+							System.out.println("Hello, " + name + "! Welcome to Java.");
+						}
+
+						public static void main(String[] args) {
+							greetUser("Alice");
+							greetUser("Bob");
+						}
+					}
+					</pre>
+					
+					<h3 class="purple-text">Example 3: Method that Returns a Value</h3>
+					<pre>
+					public class ReturnExample {
+						public static int addNumbers(int a, int b) {
+							return a + b;
+						}
+
+						public static void main(String[] args) {
+							int result = addNumbers(10, 20);
+							System.out.println("Sum: " + result);
+						}
+					}
+					</pre>
+					
+					<h2 class="orange-accent">6. Method Overloading</h2>
+					<h3 class="purple-text">Example 4: Overloaded Methods</h3>
+					<pre>
+					public class MethodOverloading {
+						public static int add(int a, int b) {
+							return a + b;
+						}
+
+						public static int add(int a, int b, int c) {
+							return a + b + c;
+						}
+
+						public static void main(String[] args) {
+							System.out.println("Sum (2 numbers): " + add(5, 10));
+							System.out.println("Sum (3 numbers): " + add(5, 10, 15));
+						}
+					}
+					</pre>
+					
+					<h2 class="orange-accent">7. Static vs Non-Static Methods</h2>
+					<h3 class="purple-text">Example 5: Static vs Non-Static Method</h3>
+					<pre>
+					public class MethodExample {
+						public static void staticMethod() {
+							System.out.println("This is a static method.");
+						}
+
+						public void nonStaticMethod() {
+							System.out.println("This is a non-static method.");
+						}
+
+						public static void main(String[] args) {
+							staticMethod();
+
+							MethodExample obj = new MethodExample();
+							obj.nonStaticMethod();
+						}
+					}
+					</pre>
+					
+					<h2 class="orange-accent">8. Recursion in Java</h2>
+					<h3 class="purple-text">Example 6: Factorial Using Recursion</h3>
+					<pre>
+					public class FactorialExample {
+						public static int factorial(int n) {
+							if (n == 1) {
+								return 1;
+							}
+							return n * factorial(n - 1);
+						}
+
+						public static void main(String[] args) {
+							System.out.println("Factorial of 5: " + factorial(5));
+						}
+					}
+					</pre>
+					
+					<h2 class="orange-accent">9. Java Method Arguments: Pass-by-Value</h2>
+					<h3 class="purple-text">Example 7: Pass-by-Value (Primitives)</h3>
+					<pre>
+					public class PassByValue {
+						public static void modifyValue(int num) {
+							num = 100;
+						}
+
+						public static void main(String[] args) {
+							int a = 50;
+							modifyValue(a);
+							System.out.println("Value after method call: " + a);
+						}
+					}
+					</pre>
+					
+					<h3 class="purple-text">Example 8: Pass-by-Value (Objects)</h3>
+					<pre>
+					class Person {
+						String name;
+					}
+
+					public class PassByReference {
+						public static void changeName(Person p) {
+							p.name = "Alice";
+						}
+
+						public static void main(String[] args) {
+							Person person = new Person();
+							person.name = "Bob";
+							changeName(person);
+							System.out.println("Name after method call: " + person.name);
+						}
+					}
+					</pre>
+					
+					<h2 class="orange-accent">10. Conclusion</h2>
+					<ul>
+						<li>✅ Java methods **organize** and **reuse** code efficiently.</li>
+						<li>✅ Methods can be **static or non-static**.</li>
+						<li>✅ **Overloading** allows multiple methods with the same name.</li>
+						<li>✅ Java **passes arguments by value** (but objects behave differently).</li>
+						<li>✅ Recursion is useful for **solving problems like factorial, Fibonacci, etc.**.</li>
+					</ul>
+				</div>
+				`,
+
+
+			'java_classes':`
+				<div class="content" id="java_classes">
+					<h1 class="blue-bolt">Java Classes - All You Need to Know</h1>
+
+					<p>In Java, **classes** are the foundation of object-oriented programming (OOP). A class is a **blueprint** for creating objects, defining their **attributes (fields)** and **behavior (methods)**.</p>
+
+					<h2 class="orange-accent">1. What is a Java Class?</h2>
+					<p>A **class** in Java is a user-defined data type that defines a template for creating objects. It encapsulates **data (variables)** and **functions (methods)**.</p>
+
+					<h3 class="purple-text">1.1 Basic Class Structure</h3>
+					<p>Here’s how a simple Java class looks:</p>
+					<pre>
+					class Car {
+						// Fields (attributes)
+						String brand;
+						int speed;
+
+						// Method
+						void drive() {
+							System.out.println(brand + " is driving at " + speed + " km/h");
+						}
+					}
+					</pre>
+
+					<p>To use the class, we create an **object**:</p>
+					<pre>
+					public class Main {
+						public static void main(String[] args) {
+							Car myCar = new Car();
+							myCar.brand = "Toyota";
+							myCar.speed = 100;
+							myCar.drive();
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">2. Class and Object Relationship</h2>
+					<p>In Java:</p>
+					<ul>
+						<li>A **class** is a **blueprint**.</li>
+						<li>An **object** is an **instance** of a class.</li>
+					</ul>
+					<p>Example:</p>
+					<pre>
+					class Person {
+						String name;
+						int age;
+					}
+
+					public class Main {
+						public static void main(String[] args) {
+							Person p1 = new Person();
+							p1.name = "John";
+							p1.age = 30;
+
+							Person p2 = new Person();
+							p2.name = "Alice";
+							p2.age = 25;
+
+							System.out.println(p1.name + " is " + p1.age + " years old.");
+							System.out.println(p2.name + " is " + p2.age + " years old.");
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">3. Constructors in Java</h2>
+					<p>A **constructor** is a special method used to initialize objects. It has the same name as the class and is called automatically when an object is created.</p>
+
+					<h3 class="purple-text">3.1 Default Constructor</h3>
+					<pre>
+					class Animal {
+						String type;
+
+						// Constructor
+						Animal() {
+							type = "Unknown";
+						}
+					}
+
+					public class Main {
+						public static void main(String[] args) {
+							Animal a = new Animal();
+							System.out.println("Animal type: " + a.type);
+						}
+					}
+					</pre>
+
+					<h3 class="purple-text">3.2 Parameterized Constructor</h3>
+					<pre>
+					class Student {
+						String name;
+						int age;
+
+						// Constructor with parameters
+						Student(String n, int a) {
+							name = n;
+							age = a;
+						}
+					}
+
+					public class Main {
+						public static void main(String[] args) {
+							Student s1 = new Student("Mike", 21);
+							Student s2 = new Student("Anna", 22);
+							
+							System.out.println(s1.name + " is " + s1.age + " years old.");
+							System.out.println(s2.name + " is " + s2.age + " years old.");
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">4. Static vs. Non-Static Members</h2>
+					<p>In Java, **static** members belong to the **class** rather than an instance of the class.</p>
+
+					<h3 class="purple-text">4.1 Static Variables</h3>
+					<p>A **static variable** is shared among all objects.</p>
+					<pre>
+					class Employee {
+						static String company = "TechCorp";
+						String name;
+
+						Employee(String n) {
+							name = n;
+						}
+					}
+
+					public class Main {
+						public static void main(String[] args) {
+							Employee e1 = new Employee("John");
+							Employee e2 = new Employee("Emma");
+
+							System.out.println(e1.name + " works at " + Employee.company);
+							System.out.println(e2.name + " works at " + Employee.company);
+						}
+					}
+					</pre>
+
+					<h3 class="purple-text">4.2 Static Methods</h3>
+					<pre>
+					class MathUtils {
+						// Static method
+						static int add(int a, int b) {
+							return a + b;
+						}
+					}
+
+					public class Main {
+						public static void main(String[] args) {
+							int result = MathUtils.add(10, 20);
+							System.out.println("Sum: " + result);
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">5. Inheritance in Java</h2>
+					<p>Inheritance allows one class to acquire the properties and behaviors of another class.</p>
+
+					<h3 class="purple-text">5.1 Creating a Subclass</h3>
+					<p>**Superclass**: Parent class, **Subclass**: Child class.</p>
+					<pre>
+					class Animal {
+						void makeSound() {
+							System.out.println("Animal makes a sound");
+						}
+					}
+
+					class Dog extends Animal {
+						void bark() {
+							System.out.println("Dog barks");
+						}
+					}
+
+					public class Main {
+						public static void main(String[] args) {
+							Dog myDog = new Dog();
+							myDog.makeSound();
+							myDog.bark();
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">6. Encapsulation in Java</h2>
+					<p>Encapsulation is **data hiding** using private variables and public methods.</p>
+
+					<h3 class="purple-text">6.1 Getters and Setters</h3>
+					<pre>
+					class BankAccount {
+						private double balance;
+
+						public void setBalance(double amount) {
+							balance = amount;
+						}
+
+						public double getBalance() {
+							return balance;
+						}
+					}
+
+					public class Main {
+						public static void main(String[] args) {
+							BankAccount acc = new BankAccount();
+							acc.setBalance(5000);
+							System.out.println("Balance: $" + acc.getBalance());
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">7. Polymorphism in Java</h2>
+					<p>Polymorphism allows a method to perform different tasks based on the object calling it.</p>
+
+					<h3 class="purple-text">7.1 Method Overriding</h3>
+					<p>When a subclass provides a specific implementation of a method defined in the superclass.</p>
+					<pre>
+					class Animal {
+						void makeSound() {
+							System.out.println("Animal makes a sound");
+						}
+					}
+
+					class Cat extends Animal {
+						@Override
+						void makeSound() {
+							System.out.println("Cat meows");
+						}
+					}
+
+					public class Main {
+						public static void main(String[] args) {
+							Animal myAnimal = new Cat();
+							myAnimal.makeSound(); // Calls overridden method
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">8. Abstract Classes</h2>
+					<p>An **abstract class** contains **abstract methods** (methods without a body). It must be extended by another class.</p>
+
+					<pre>
+					abstract class Animal {
+						abstract void makeSound();
+					}
+
+					class Bird extends Animal {
+						void makeSound() {
+							System.out.println("Bird chirps");
+						}
+					}
+
+					public class Main {
+						public static void main(String[] args) {
+							Animal myBird = new Bird();
+							myBird.makeSound();
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">Conclusion</h2>
+					<p>Java classes are the **core** of Object-Oriented Programming. They allow you to define data and behavior, use **constructors**, **inheritance**, and **polymorphism** to make code reusable and maintainable.</p>
+
+				</div>
+				`,
+
+
+			'java_data_structures':`
+				<div class="content" id="java_data_structures">
+					<h1 class="blue-bolt">Java Data Structures - All You Need to Know</h1>
+
+					<p>Data structures are a crucial part of programming, allowing us to efficiently store, retrieve, and manipulate data. Java provides both built-in and custom data structures to handle different types of data.</p>
+
+					<h2 class="orange-accent">1. What are Data Structures?</h2>
+					<p>A **data structure** is a way of organizing and storing data so it can be accessed and modified efficiently. In Java, we have:</p>
+					<ul>
+						<li>Primitive Data Structures (Arrays, Strings, etc.)</li>
+						<li>Collection Framework (Lists, Sets, Maps, Queues, etc.)</li>
+						<li>Custom Data Structures (Stacks, Queues, Trees, etc.)</li>
+					</ul>
+
+					<h2 class="orange-accent">2. Arrays in Java</h2>
+					<p>An **array** is a fixed-size container that holds multiple values of the same data type.</p>
+
+					<h3 class="purple-text">2.1 Declaring and Initializing Arrays</h3>
+					<pre>
+					public class ArrayExample {
+						public static void main(String[] args) {
+							int[] numbers = {10, 20, 30, 40, 50};
+							System.out.println("First number: " + numbers[0]); 
+						}
+					}
+					</pre>
+
+					<h3 class="purple-text">2.2 Iterating Over Arrays</h3>
+					<pre>
+					public class ArrayLoopExample {
+						public static void main(String[] args) {
+							int[] numbers = {1, 2, 3, 4, 5};
+							for (int num : numbers) {
+								System.out.println(num);
+							}
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">3. ArrayList in Java</h2>
+					<p>An **ArrayList** is a dynamic array that can grow or shrink in size.</p>
+
+					<h3 class="purple-text">3.1 Creating and Using an ArrayList</h3>
+					<pre>
+					import java.util.ArrayList;
+
+					public class ArrayListExample {
+						public static void main(String[] args) {
+							ArrayList<String> names = new ArrayList<>();
+							names.add("Alice");
+							names.add("Bob");
+							names.add("Charlie");
+
+							System.out.println("First name: " + names.get(0));
+						}
+					}
+					</pre>
+
+					<h3 class="purple-text">3.2 Iterating Over an ArrayList</h3>
+					<pre>
+					import java.util.ArrayList;
+
+					public class ArrayListLoop {
+						public static void main(String[] args) {
+							ArrayList<Integer> numbers = new ArrayList<>();
+							numbers.add(10);
+							numbers.add(20);
+							numbers.add(30);
+
+							for (int num : numbers) {
+								System.out.println(num);
+							}
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">4. LinkedList in Java</h2>
+					<p>A **LinkedList** is a linear data structure where elements are connected by pointers.</p>
+
+					<h3 class="purple-text">4.1 Creating and Using a LinkedList</h3>
+					<pre>
+					import java.util.LinkedList;
+
+					public class LinkedListExample {
+						public static void main(String[] args) {
+							LinkedList<String> cities = new LinkedList<>();
+							cities.add("New York");
+							cities.add("London");
+							cities.add("Paris");
+
+							System.out.println("First city: " + cities.getFirst());
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">5. HashMap in Java</h2>
+					<p>A **HashMap** stores data in key-value pairs and allows efficient lookups.</p>
+
+					<h3 class="purple-text">5.1 Creating and Using a HashMap</h3>
+					<pre>
+					import java.util.HashMap;
+
+					public class HashMapExample {
+						public static void main(String[] args) {
+							HashMap<String, Integer> ages = new HashMap<>();
+							ages.put("Alice", 25);
+							ages.put("Bob", 30);
+
+							System.out.println("Alice's age: " + ages.get("Alice"));
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">6. HashSet in Java</h2>
+					<p>A **HashSet** stores unique elements and does not allow duplicates.</p>
+
+					<h3 class="purple-text">6.1 Creating and Using a HashSet</h3>
+					<pre>
+					import java.util.HashSet;
+
+					public class HashSetExample {
+						public static void main(String[] args) {
+							HashSet<Integer> numbers = new HashSet<>();
+							numbers.add(10);
+							numbers.add(20);
+							numbers.add(20); // Duplicate, won't be added
+
+							System.out.println("Set size: " + numbers.size());
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">7. Stack in Java</h2>
+					<p>A **Stack** follows the Last In, First Out (LIFO) principle.</p>
+
+					<h3 class="purple-text">7.1 Implementing a Stack</h3>
+					<pre>
+					import java.util.Stack;
+
+					public class StackExample {
+						public static void main(String[] args) {
+							Stack<String> books = new Stack<>();
+							books.push("Java Programming");
+							books.push("Data Structures");
+
+							System.out.println("Top book: " + books.peek());
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">8. Queue in Java</h2>
+					<p>A **Queue** follows the First In, First Out (FIFO) principle.</p>
+
+					<h3 class="purple-text">8.1 Implementing a Queue</h3>
+					<pre>
+					import java.util.LinkedList;
+					import java.util.Queue;
+
+					public class QueueExample {
+						public static void main(String[] args) {
+							Queue<String> orders = new LinkedList<>();
+							orders.add("Order 1");
+							orders.add("Order 2");
+
+							System.out.println("Processing: " + orders.poll());
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">9. PriorityQueue in Java</h2>
+					<p>A **PriorityQueue** arranges elements based on priority.</p>
+
+					<h3 class="purple-text">9.1 Implementing a PriorityQueue</h3>
+					<pre>
+					import java.util.PriorityQueue;
+
+					public class PriorityQueueExample {
+						public static void main(String[] args) {
+							PriorityQueue<Integer> pq = new PriorityQueue<>();
+							pq.add(5);
+							pq.add(1);
+							pq.add(3);
+
+							System.out.println("Smallest element: " + pq.poll());
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">10. TreeMap in Java</h2>
+					<p>A **TreeMap** stores key-value pairs in a sorted order.</p>
+
+					<h3 class="purple-text">10.1 Implementing a TreeMap</h3>
+					<pre>
+					import java.util.TreeMap;
+
+					public class TreeMapExample {
+						public static void main(String[] args) {
+							TreeMap<String, Integer> scores = new TreeMap<>();
+							scores.put("Alice", 90);
+							scores.put("Bob", 85);
+
+							System.out.println("Lowest key: " + scores.firstKey());
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">Conclusion</h2>
+					<p>Java provides various built-in data structures that make data storage and retrieval more efficient. Choosing the right data structure depends on your specific use case and performance needs.</p>
+				</div>
+				`,
+
+
+			'java_advanced':`
+				<div class="content" id="java_advanced">
+					<h1 class="blue-bolt">Java Advanced - All You Need to Know</h1>
+
+					<h2 class="orange-accent">1. Introduction to Advanced Java</h2>
+					<p>Advanced Java covers features beyond basic syntax, such as multithreading, generics, annotations, and Java Streams. These concepts are used in real-world applications for efficiency, scalability, and maintainability.</p>
+
+					<h2 class="orange-accent">2. Java Multithreading</h2>
+					<p>Multithreading allows Java programs to run multiple tasks simultaneously to improve performance.</p>
+
+					<h3 class="purple-text">2.1 Creating Threads Using Thread Class</h3>
+					<p>Threads can be created by extending the <code class="code-inline">Thread</code> class and overriding the <code class="code-inline">run()</code> method.</p>
+					<pre>
+					class MyThread extends Thread {
+						public void run() {
+							System.out.println("Thread is running...");
+						}
+					}
+
+					public class ThreadExample {
+						public static void main(String[] args) {
+							MyThread t1 = new MyThread();
+							t1.start();
+						}
+					}
+					</pre>
+
+					<h3 class="purple-text">2.2 Creating Threads Using Runnable Interface</h3>
+					<p>Implementing <code class="code-inline">Runnable</code> is another way to create a thread.</p>
+					<pre>
+					class MyRunnable implements Runnable {
+						public void run() {
+							System.out.println("Runnable thread is running...");
+						}
+					}
+
+					public class RunnableExample {
+						public static void main(String[] args) {
+							Thread t1 = new Thread(new MyRunnable());
+							t1.start();
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">3. Java Streams API</h2>
+					<p>The Streams API allows functional-style processing of collections.</p>
+
+					<h3 class="purple-text">3.1 Filtering and Iterating Using Streams</h3>
+					<pre>
+					import java.util.Arrays;
+					import java.util.List;
+
+					public class StreamExample {
+						public static void main(String[] args) {
+							List<String> names = Arrays.asList("Alice", "Bob", "Charlie", "David");
+							names.stream().filter(name -> name.startsWith("A")).forEach(System.out::println);
+						}
+					}
+					</pre>
+
+					<h3 class="purple-text">3.2 Using Map to Transform Data</h3>
+					<pre>
+					import java.util.Arrays;
+					import java.util.List;
+					import java.util.stream.Collectors;
+
+					public class StreamMapExample {
+						public static void main(String[] args) {
+							List<Integer> numbers = Arrays.asList(1, 2, 3, 4);
+							List<Integer> squaredNumbers = numbers.stream().map(n -> n * n).collect(Collectors.toList());
+							System.out.println(squaredNumbers);
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">4. Java Generics</h2>
+					<p>Generics enable type safety and code reusability.</p>
+
+					<h3 class="purple-text">4.1 Creating a Generic Class</h3>
+					<pre>
+					class Box<T> {
+						private T value;
+						public void setValue(T value) { this.value = value; }
+						public T getValue() { return value; }
+					}
+
+					public class GenericExample {
+						public static void main(String[] args) {
+							Box<Integer> intBox = new Box<>();
+							intBox.setValue(10);
+							System.out.println(intBox.getValue());
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">5. Java Lambda Expressions</h2>
+					<p>Lambda expressions simplify the syntax of anonymous functions.</p>
+
+					<h3 class="purple-text">5.1 Using Lambda with Functional Interfaces</h3>
+					<pre>
+					interface MathOperation {
+						int operate(int a, int b);
+					}
+
+					public class LambdaExample {
+						public static void main(String[] args) {
+							MathOperation addition = (a, b) -> a + b;
+							System.out.println(addition.operate(5, 3));
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">6. Java Annotations</h2>
+					<p>Annotations provide metadata about code, used for configuration and documentation.</p>
+
+					<h3 class="purple-text">6.1 Creating a Custom Annotation</h3>
+					<pre>
+					import java.lang.annotation.*;
+
+					@Retention(RetentionPolicy.RUNTIME)
+					@Target(ElementType.METHOD)
+					@interface MyAnnotation {
+						String value();
+					}
+
+					class Test {
+						@MyAnnotation(value = "Custom Annotation Example")
+						public void display() { System.out.println("Method executed"); }
+					}
+					</pre>
+
+					<h2 class="orange-accent">7. Java Reflection</h2>
+					<p>Reflection allows inspecting and manipulating classes, methods, and fields dynamically.</p>
+
+					<h3 class="purple-text">7.1 Getting Class Information at Runtime</h3>
+					<pre>
+					class Person {
+						private String name;
+						public Person(String name) { this.name = name; }
+						public void display() { System.out.println("Name: " + name); }
+					}
+
+					import java.lang.reflect.*;
+
+					public class ReflectionExample {
+						public static void main(String[] args) throws Exception {
+							Class<?> clazz = Class.forName("Person");
+							Constructor<?> constructor = clazz.getConstructor(String.class);
+							Object obj = constructor.newInstance("John Doe");
+							Method method = clazz.getMethod("display");
+							method.invoke(obj);
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">8. Java Serialization</h2>
+					<p>Serialization converts Java objects into a byte stream to be stored or transmitted.</p>
+
+					<h3 class="purple-text">8.1 Serializing an Object</h3>
+					<pre>
+					import java.io.*;
+
+					class Employee implements Serializable {
+						private static final long serialVersionUID = 1L;
+						private String name;
+						public Employee(String name) { this.name = name; }
+						public String getName() { return name; }
+					}
+
+					public class SerializationExample {
+						public static void main(String[] args) {
+							try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("employee.ser"))) {
+								Employee emp = new Employee("John Doe");
+								out.writeObject(emp);
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+					</pre>
+
+					<h3 class="purple-text">8.2 Deserializing an Object</h3>
+					<pre>
+					import java.io.*;
+
+					public class DeserializationExample {
+						public static void main(String[] args) {
+							try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("employee.ser"))) {
+								Employee emp = (Employee) in.readObject();
+								System.out.println("Deserialized Employee Name: " + emp.getName());
+							} catch (IOException | ClassNotFoundException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">9. Conclusion</h2>
+					<p>Advanced Java covers powerful concepts such as multithreading, streams, and generics. Understanding these topics is essential for building efficient and scalable applications.</p>
+
+				</div>
+				`,				
+
+
+			'java_file':`
+				<div class="content" id="java_file_handling">
+					<h1 class="blue-bolt">Java File Handling - All You Need to Know</h1>
+
+					<h2 class="orange-accent">1. Introduction to File Handling</h2>
+					<p>File handling in Java allows reading and writing operations on files stored in the system. Java provides the <code class="code-inline">java.io</code> package for handling files efficiently.</p>
+
+					<h2 class="orange-accent">2. Reading a File</h2>
+					<h3 class="purple-text">2.1 Using FileReader</h3>
+					<p>The <code class="code-inline">FileReader</code> class reads character files efficiently.</p>
+					<pre>
+					import java.io.FileReader;
+					import java.io.IOException;
+
+					public class FileReadExample {
+						public static void main(String[] args) {
+							try {
+								FileReader reader = new FileReader("example.txt");
+								int data;
+								while ((data = reader.read()) != -1) {
+									System.out.print((char) data);
+								}
+								reader.close();
+							} catch (IOException e) {
+								System.out.println("Error reading file: " + e.getMessage());
+							}
+						}
+					}
+					</pre>
+
+					<h3 class="purple-text">2.2 Using BufferedReader</h3>
+					<p>The <code class="code-inline">BufferedReader</code> class is used to read text from an input stream.</p>
+					<pre>
+					import java.io.BufferedReader;
+					import java.io.FileReader;
+					import java.io.IOException;
+
+					public class BufferedReaderExample {
+						public static void main(String[] args) {
+							try (BufferedReader br = new BufferedReader(new FileReader("example.txt"))) {
+								String line;
+								while ((line = br.readLine()) != null) {
+									System.out.println(line);
+								}
+							} catch (IOException e) {
+								System.out.println("Error reading file: " + e.getMessage());
+							}
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">3. Writing to a File</h2>
+					<h3 class="purple-text">3.1 Using FileWriter</h3>
+					<p>The <code class="code-inline">FileWriter</code> class allows writing character-based data to a file.</p>
+					<pre>
+					import java.io.FileWriter;
+					import java.io.IOException;
+
+					public class FileWriteExample {
+						public static void main(String[] args) {
+							try (FileWriter writer = new FileWriter("output.txt")) {
+								writer.write("Hello, File Handling in Java!");
+								System.out.println("Successfully written to file.");
+							} catch (IOException e) {
+								System.out.println("Error writing file: " + e.getMessage());
+							}
+						}
+					}
+					</pre>
+
+					<h3 class="purple-text">3.2 Using BufferedWriter</h3>
+					<p>The <code class="code-inline">BufferedWriter</code> class provides efficient writing of characters, arrays, and strings.</p>
+					<pre>
+					import java.io.BufferedWriter;
+					import java.io.FileWriter;
+					import java.io.IOException;
+
+					public class BufferedWriterExample {
+						public static void main(String[] args) {
+							try (BufferedWriter bw = new BufferedWriter(new FileWriter("output.txt"))) {
+								bw.write("Buffered Writer Example");
+								System.out.println("Successfully written using BufferedWriter.");
+							} catch (IOException e) {
+								System.out.println("Error writing file: " + e.getMessage());
+							}
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">4. File Deletion</h2>
+					<p>Files can be deleted using the <code class="code-inline">delete()</code> method of the <code class="code-inline">File</code> class.</p>
+					<pre>
+					import java.io.File;
+
+					public class FileDeleteExample {
+						public static void main(String[] args) {
+							File file = new File("output.txt");
+							if (file.delete()) {
+								System.out.println("File deleted successfully.");
+							} else {
+								System.out.println("Failed to delete file.");
+							}
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">5. File Handling Best Practices</h2>
+					<ul>
+						<li>Always close file resources after use.</li>
+						<li>Use <code class="code-inline">try-with-resources</code> to manage resources efficiently.</li>
+						<li>Handle exceptions properly to avoid program crashes.</li>
+						<li>Check if a file exists before performing operations.</li>
+					</ul>
+				</div>
+
+				`,	
+				
+				
+			'java_project':`
+				<div class="content" id="java_project">
+					<h1 class="blue-bolt">Java Project - All You Need to Know</h1>
+
+					<h2 class="orange-accent">1. Setting Up a Java Project: Best Practices</h2>
+					<p>Before starting a Java project, it's important to follow best practices to ensure efficiency, scalability, and maintainability.</p>
+
+					<h3 class="purple-text">1.1 Choose the Right Development Environment</h3>
+					<ul>
+						<li>Use an IDE like IntelliJ IDEA, Eclipse, or VS Code.</li>
+						<li>Ensure you have the latest JDK installed.</li>
+						<li>Configure project settings and dependencies properly.</li>
+					</ul>
+
+					<h3 class="purple-text">1.2 Follow a Project Structure</h3>
+					<p>A well-structured project is easy to manage and scale. Use the following standard directory structure:</p>
+					<pre>
+					/MyJavaProject
+						├── src
+						│   ├── main
+						│   │   ├── java (Java source files)
+						│   │   ├── resources (config files, properties)
+						│   ├── test (Unit tests)
+						├── lib (External libraries)
+						├── docs (Documentation)
+						├── README.md (Project information)
+						├── pom.xml / build.gradle (If using Maven or Gradle)
+					</pre>
+
+					<h3 class="purple-text">1.3 Use Version Control</h3>
+					<p>Using Git helps track changes and collaborate effectively.</p>
+					<pre>
+					git init
+					git add .
+					git commit -m "Initial commit"
+					git push origin main
+					</pre>
+
+					<h3 class="purple-text">1.4 Use Build and Dependency Management Tools</h3>
+					<p>For managing dependencies, use Maven or Gradle:</p>
+					<pre>
+					<!-- Example Maven dependency -->
+					&lt;dependency&gt;
+						&lt;groupId&gt;org.apache.commons&lt;/groupId&gt;
+						&lt;artifactId&gt;commons-lang3&lt;/artifactId&gt;
+						&lt;version&gt;3.12.0&lt;/version&gt;
+					&lt;/dependency&gt;
+					</pre>
+
+					<h2 class="orange-accent">2. Common Mistakes to Avoid in Java Projects</h2>
+					<ul>
+						<li><strong>Poor Naming Conventions:</strong> Use meaningful class and variable names.</li>
+						<li><strong>No Code Documentation:</strong> Add comments and JavaDocs to explain complex logic.</li>
+						<li><strong>Hardcoding Values:</strong> Use configuration files instead of hardcoded values.</li>
+						<li><strong>Ignoring Exception Handling:</strong> Use try-catch blocks to handle errors properly.</li>
+						<li><strong>Lack of Unit Testing:</strong> Use JUnit or TestNG to write test cases.</li>
+					</ul>
+
+					<h2 class="orange-accent">3. Checking Project Success</h2>
+					<p>To determine if a Java project is successful, check:</p>
+					<ul>
+						<li>Does it meet the original project requirements?</li>
+						<li>Is the code clean, maintainable, and efficient?</li>
+						<li>Does it handle errors gracefully?</li>
+						<li>Are there unit tests covering major functionalities?</li>
+						<li>Does the application run as expected on different environments?</li>
+					</ul>
+
+					<h2 class="orange-accent">4. Simple Java Project: A To-Do List Console App</h2>
+					<p>This simple project allows users to add, remove, and view tasks in a console-based to-do list.</p>
+
+					<h3 class="purple-text">4.1 Project Structure</h3>
+					<pre>
+					/TodoApp
+						├── src
+						│   ├── main
+						│   │   ├── java
+						│   │   │   ├── TodoList.java
+						│   │   │   ├── Main.java
+					</pre>
+
+					<h3 class="purple-text">4.2 Code Implementation</h3>
+					<pre>
+					import java.util.ArrayList;
+					import java.util.Scanner;
+
+					class TodoList {
+						private ArrayList<String> tasks = new ArrayList<>();
+
+						public void addTask(String task) {
+							tasks.add(task);
+						}
+
+						public void removeTask(int index) {
+							if (index >= 0 && index < tasks.size()) {
+								tasks.remove(index);
+							} else {
+								System.out.println("Invalid task number.");
+							}
+						}
+
+						public void displayTasks() {
+							if (tasks.isEmpty()) {
+								System.out.println("No tasks available.");
+							} else {
+								for (int i = 0; i < tasks.size(); i++) {
+									System.out.println((i + 1) + ". " + tasks.get(i));
+								}
+							}
+						}
+					}
+
+					public class Main {
+						public static void main(String[] args) {
+							Scanner scanner = new Scanner(System.in);
+							TodoList todoList = new TodoList();
+
+							while (true) {
+								System.out.println("\n1. Add Task  2. Remove Task  3. View Tasks  4. Exit");
+								System.out.print("Enter choice: ");
+								int choice = scanner.nextInt();
+								scanner.nextLine();  // Consume newline
+
+								switch (choice) {
+									case 1:
+										System.out.print("Enter task: ");
+										String task = scanner.nextLine();
+										todoList.addTask(task);
+										break;
+									case 2:
+										todoList.displayTasks();
+										System.out.print("Enter task number to remove: ");
+										int taskNumber = scanner.nextInt();
+										todoList.removeTask(taskNumber - 1);
+										break;
+									case 3:
+										todoList.displayTasks();
+										break;
+									case 4:
+										System.out.println("Exiting...");
+										scanner.close();
+										return;
+									default:
+										System.out.println("Invalid choice. Try again.");
+								}
+							}
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">5. Medium-Level Java Project: Library Management System</h2>
+					<p>This project simulates a simple library system where users can add, borrow, and return books.</p>
+
+					<h3 class="purple-text">5.1 Project Structure</h3>
+					<pre>
+					/LibrarySystem
+						├── src
+						│   ├── main
+						│   │   ├── java
+						│   │   │   ├── Book.java
+						│   │   │   ├── Library.java
+						│   │   │   ├── Main.java
+					</pre>
+
+					<h3 class="purple-text">5.2 Code Implementation</h3>
+					<pre>
+					import java.util.ArrayList;
+
+					class Book {
+						String title;
+						boolean isBorrowed;
+
+						public Book(String title) {
+							this.title = title;
+							this.isBorrowed = false;
+						}
+
+						public void borrowBook() {
+							if (!isBorrowed) {
+								isBorrowed = true;
+								System.out.println(title + " has been borrowed.");
+							} else {
+								System.out.println(title + " is already borrowed.");
+							}
+						}
+
+						public void returnBook() {
+							if (isBorrowed) {
+								isBorrowed = false;
+								System.out.println(title + " has been returned.");
+							} else {
+								System.out.println(title + " was not borrowed.");
+							}
+						}
+					}
+
+					class Library {
+						private ArrayList<Book> books = new ArrayList<>();
+
+						public void addBook(String title) {
+							books.add(new Book(title));
+						}
+
+						public void listBooks() {
+							for (int i = 0; i < books.size(); i++) {
+								System.out.println((i + 1) + ". " + books.get(i).title + 
+												   (books.get(i).isBorrowed ? " (Borrowed)" : ""));
+							}
+						}
+
+						public void borrowBook(int index) {
+							if (index >= 0 && index < books.size()) {
+								books.get(index).borrowBook();
+							}
+						}
+
+						public void returnBook(int index) {
+							if (index >= 0 && index < books.size()) {
+								books.get(index).returnBook();
+							}
+						}
+					}
+					</pre>
+
+					<h2 class="orange-accent">6. Conclusion</h2>
+					<p>Building Java projects requires proper planning, best practices, and avoiding common mistakes. The examples above introduce real-world concepts to help beginners start their Java development journey.</p>
+				</div>
+
+				`,	
+
+			'ex_1':`
+			<p>updating !!</p>
+				`,					
+
+			'ex_2':`
+			<p>updating !!</p>
+				`,		
+				
+			'ex_3':`
+			<p>updating !!</p>
+				`,
+
+			'ex_4':`
+			<p>updating !!</p>
+				`,	
+			'ex_5':`
+			<p>updating !!</p>
+				`,	
+			'ex_6':`
+			<p>updating !!</p>
+				`,	
+			'ex_7':`
+			<p>updating !!</p>
+				`,	
+			'ex_8':`
+			<p>updating !!</p>
+				`,
+			'ex_9':`
+			<p>updating !!</p>
+				`,
+			'ex_10':`
+			<p>updating !!</p>
+				`,					
+        };
+
+        document.getElementById('content-area').innerHTML = content[topic] || '<h1 class="blue-bolt">Content Coming Soon</h1>';
+    }
+</script>
+
+</body>
+</html>
